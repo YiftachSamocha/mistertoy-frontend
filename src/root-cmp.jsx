@@ -4,24 +4,30 @@ import { HomePage } from "./pages/HomePage.jsx";
 import { About } from "./pages/About.jsx";
 import { ToyIndex } from "./pages/ToyIndex.jsx";
 import { AppHeader } from "./cmps/AppHeader.jsx"
+import { store } from "./store/store.js";
 
 import './assets/style/main.css'
+import { ToyDetails } from "./pages/ToyDetails.jsx";
+
 
 export function App() {
     return (
-        <Router>
-            <section className="app">
-                <AppHeader />
-                <main className="main-layout">
-                    <Routes>
-                        <Route element={<HomePage />} path="/" />
-                        <Route element={<About />} path="/about" />
-                        <Route element={<ToyIndex />} path="/toy" />
+        <Provider store={store}>
+            <Router>
+                <section className="app">
+                    <AppHeader />
+                    <main className="main-layout">
+                        <Routes>
+                            <Route element={<HomePage />} path="/" />
+                            <Route element={<About />} path="/about" />
+                            <Route element={<ToyIndex />} path="/toy" />
+                            <Route element={<ToyDetails />} path="/toy/:id" />
 
-                    </Routes>
-                </main>
-            </section>
-        </Router>
+                        </Routes>
+                    </main>
+                </section>
+            </Router>
+        </Provider>
     )
 
 }

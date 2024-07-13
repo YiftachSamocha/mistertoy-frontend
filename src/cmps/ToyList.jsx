@@ -1,18 +1,23 @@
 import { useSelector } from "react-redux"
 import { ToyPreview } from "./ToyPreview.jsx"
-import { toyService } from "../services/toy.service.js"
-import { useEffect, useState } from "react"
+import { loadToys, removeToy } from "../store/actions/toy.actions.js"
+import { useEffect } from "react"
+
 
 export function ToyList() {
-    const [toys, setToys] = useState([])
+    const toys = useSelector(state => state.toyModule.toys)
     useEffect(() => {
-        toyService.query()
-            .then(res => setToys(res))
-    })
-    if (toys.length === 0) return
+        loadToys()
+    }, [])
+
+
+    function onRemoveToy(toyId) {
+        removeToy(toyId)
+    }
+    if (!toys || toys.length === 0) return <div className="no-toys">No toys....</div>
     return <section className="toy-list">
         {toys.map(toy => {
-            return <ToyPreview toy={toy} />
+            return <ToyPreview toy={toy} onRemoveToy={onRemoveToy} key={toy._id} />
         })}
 
     </section>

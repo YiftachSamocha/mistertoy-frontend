@@ -2,7 +2,7 @@ import { storageService } from "./async-storage.service.js"
 import { utilService } from "./util.service.js"
 
 
-export const toyService = { query, getById, reomve, save }
+export const toyService = { query, getById, reomve, save, getDefaultFilter }
 const DB_TOYS = 'DB_TOYS'
 _createData()
 
@@ -21,10 +21,29 @@ function save(toyToSave) {
 
 function getById(toyId) {
     return storageService.get(DB_TOYS, toyId)
+        .then(toy => {
+            toy = _setNextPrevToyId(toy)
+            return toy
+        })
 }
 
 function reomve(toyId) {
     return storageService.remove(DB_TOYS, toyId)
+}
+
+function getDefaultFilter() {
+    return { name: '', inStock: 'all', labels: [], sort: 'name' }
+}
+
+function _setNextPrevToyId(toy) {
+    return storageService.query(DB_TOYS).then((toys) => {
+        const toyIdx = toys.findIndex((currToy) => currToy._id === toy._id)
+        const nextToy = toys[toyIdx + 1] ? toys[toyIdx + 1] : toys[0]
+        const prevToy = toys[toyIdx - 1] ? toys[toyIdx - 1] : toys[toys.length - 1]
+        toy.nextToyId = nextToy._id
+        toy.prevToyId = prevToy._id
+        return toy
+    })
 }
 
 function _createData(length = 24) {
@@ -72,8 +91,8 @@ function getRandomItem(type) {
         "#ADD8E6",
         "#FFD1DC",
         "#F8DE7E"
-      ]
-    
+    ]
+
     switch (type) {
         case "name":
             return toyNames[Math.floor(Math.random() * toyNames.length)]
