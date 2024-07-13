@@ -11,7 +11,7 @@
 }
 
 .toy h3 {
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-bottom: 10px;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .toy h4 {
-    font-size: 1em;
+    font-size: 1.3em;
     color: #666;
 }
 
@@ -33,8 +33,8 @@
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
+    background-color: inherit;
+    color: black;
     cursor: pointer;
     transition: background-color 0.3s;
 }

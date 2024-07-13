@@ -1,8 +1,6 @@
-import { toyService } from "../../services/toy.service.js"
-
 const initialState = {
     toys: [],
-    filterBy: toyService.getDefaultFilter()
+    filterBy: { name: '', inStock: 'all', labels: [], sort: 'name' }
 }
 
 export const SET_TOYS = 'LOAD_TOYS'

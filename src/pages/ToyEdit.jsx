@@ -63,7 +63,7 @@ export function ToyEdit() {
         <div>
             <label htmlFor="inStock">{toyToSave.inStock ? 'In Stock!' : 'Not in Stock'}</label>
             <input type="checkbox" name="inStock" id="inStock"
-                value={toyToSave.inStock} onChange={handleChange} />
+                checked={toyToSave.inStock} onChange={handleChange} />
         </div>
         <div className="label-container">
             <label htmlFor="lables">Labels:</label>
