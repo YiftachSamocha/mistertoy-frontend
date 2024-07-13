@@ -19,7 +19,7 @@ export function ToyEdit() {
 
     function handleChange({ target }) {
         let { name, type, value, checked } = target
-        if (name === 'isStock') value = checked
+        if (name === 'inStock') value = checked
         else if (type === 'checkbox') {
             if (checked) setToyToSave({ ...toyToSave, labels: [...toyToSave.labels, name] })
             else {
@@ -56,9 +56,9 @@ export function ToyEdit() {
                 value={toyToSave.color} onChange={handleChange} />
         </div>
         <div>
-            <label htmlFor="isStock">{toyToSave.isStock ? 'In Stock!' : 'Not in Stock'}</label>
-            <input type="checkbox" name="isStock" id="isStock"
-                value={toyToSave.isStock} onChange={handleChange} />
+            <label htmlFor="inStock">{toyToSave.inStock ? 'In Stock!' : 'Not in Stock'}</label>
+            <input type="checkbox" name="inStock" id="inStock"
+                value={toyToSave.inStock} onChange={handleChange} />
         </div>
         <div className="label-container">
             <label htmlFor="lables">Labels:</label>

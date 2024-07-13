@@ -1,0 +1,72 @@
+.filterBy {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.filterBy div {
+    flex: 1; /* Distribute each div in the row equally */
+    margin-bottom: 15px;
+}
+
+.filterBy label {
+    display: block;
+    font-size: 1.2em; /* Increased font size */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filterBy input[type="text"],
+.filterBy select {
+    width: 40%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.filterBy .label-container {
+    flex-basis: 100%; /* Take full width of the row */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filterBy .label-container button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filterBy .label-container button:hover {
+    background-color: #0056b3;
+}
+
+#labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#labels div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#labels label {
+    font-size: 1em;
+    margin-bottom: 0;
+    font-weight: normal;
+}

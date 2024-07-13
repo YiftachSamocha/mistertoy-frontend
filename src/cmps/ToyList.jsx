@@ -6,9 +6,10 @@ import { useEffect } from "react"
 
 export function ToyList() {
     const toys = useSelector(state => state.toyModule.toys)
+    const filterBy = useSelector(state => state.toyModule.filterBy)
     useEffect(() => {
-        loadToys()
-    }, [])
+        loadToys(filterBy)
+    }, [filterBy])
 
 
     function onRemoveToy(toyId) {

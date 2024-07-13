@@ -8,6 +8,35 @@ _createData()
 
 function query(filterBy = {}) {
     return storageService.query(DB_TOYS)
+        .then(toys => {
+            if (filterBy.name) {
+                toys = toys.filter(toy => toy.name.includes(filterBy.name))
+            }
+            if (filterBy.inStock) {
+                if (filterBy.inStock === 'in') toys = toys.filter(toy => toy.inStock)
+                else if (filterBy.inStock === 'out') toys = toys.filter(toy => !toy.inStock)
+            }
+            if (filterBy.labels.length !== 0) {
+                toys = toys.filter(toy =>
+                    filterBy.labels.some(label => toy.labels.includes(label)))
+
+            }
+            if (filterBy.sort) {
+                switch (filterBy.sort) {
+                    case 'name':
+                        toys = toys.sort((a, b) => a.name.localeCompare(b.name))
+                        break
+                    case 'price':
+                        toys = toys.sort((a, b) => a.price - b.price)
+                        break
+                    case 'date':
+                        toys = toys.sort((a, b) => a.createdAt - b.createdAt)
+                        break
+                }
+            }
+
+            return toys
+        })
 }
 
 function save(toyToSave) {
@@ -41,7 +70,7 @@ function getEmptyToy() {
         price: 50,
         labels: [],
         createdAt: new Date(),
-        isStock: false,
+        inStock: false,
         color: '#ffffff',
 
     }
@@ -78,7 +107,7 @@ function _createData(length = 24) {
                 price: _getRandomItem('price'),
                 labels: _getRandomItem('labels'),
                 createdAt: new Date(),
-                inStock: _getRandomItem('isStock'),
+                inStock: _getRandomItem('inStock'),
                 color: _getRandomItem('color'),
             }
             toys.push(toy)
@@ -131,7 +160,7 @@ function _getRandomItem(type) {
             }
             return result
 
-        case "isStock":
+        case "inStock":
             return Math.random() < 0.5
 
         case "color":
