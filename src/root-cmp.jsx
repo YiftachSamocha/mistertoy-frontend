@@ -3,7 +3,9 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";
 import { About } from "./pages/About.jsx";
 import { ToyIndex } from "./pages/ToyIndex.jsx";
-import { AppHeader } from "./cmps/AppHeader.jsx";
+import { AppHeader } from "./cmps/AppHeader.jsx"
+
+import './assets/style/main.css'
 
 export function App() {
     return (

@@ -1,0 +1,25 @@
+.toy {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.toy:hover {
+    transform: scale(1.05);
+}
+
+.toy h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.toy h3.in-stock {
+    color: green;
+}
+
+.toy h4 {
+    font-size: 1em;
+    color: #666;
+}

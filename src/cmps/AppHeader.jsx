@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 export function AppHeader() {
-    return <section>
+    return <section className="app-header">
         <header>
             <h1>Toys!</h1>
             <nav>
