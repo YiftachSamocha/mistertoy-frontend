@@ -24,7 +24,7 @@ export function toyReducer(state = initialState, action = {}) {
             return { ...state, toys: filteredToys }
 
         case ADD_TOY:
-            const newToys = { ...state.toys }
+            const newToys = [...state.toys]
             newToys.push(action.toy)
             return { ...state, toys: newToys }
 

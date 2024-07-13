@@ -14,10 +14,10 @@ export function ToyList() {
     function onRemoveToy(toyId) {
         removeToy(toyId)
     }
-    if (!toys || toys.length === 0) return <div className="no-toys">No toys....</div>
+    if (!toys || toys.length === 0) return <div className="no-toys">Loading...</div>
     return <section className="toy-list">
         {toys.map(toy => {
-            return <ToyPreview toy={toy} onRemoveToy={onRemoveToy} key={toy._id} />
+            return <ToyPreview key={toy._id} toy={toy} onRemoveToy={onRemoveToy} />
         })}
 
     </section>

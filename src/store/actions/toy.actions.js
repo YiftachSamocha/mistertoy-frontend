@@ -13,7 +13,7 @@ export function removeToy(toyId) {
 }
 
 export function saveToy(toy) {
-    const type = toyToSave._id ? EDIT_TOY : ADD_TOY
+    const type = toy._id ? EDIT_TOY : ADD_TOY
     return toyService.save(toy)
         .then(() => store.dispatch({ type, toy }))
 }

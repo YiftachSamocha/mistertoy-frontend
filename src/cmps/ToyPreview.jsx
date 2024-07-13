@@ -7,7 +7,7 @@ export function ToyPreview({ toy, onRemoveToy }) {
         <h4>{toy.price}</h4>
         <div>
             <Link to={'/toy/' + toy._id}><button><i className="fa-solid fa-info"></i></button></Link>
-            <button><i className="fa-solid fa-pen-to-square"></i></button>
+            <Link to={'/toy/edit/' + toy._id}><button><i className="fa-solid fa-pen-to-square"></i></button></Link>
             <button onClick={() => onRemoveToy(toy._id)}><i className="fa-solid fa-trash"></i></button>
         </div>
     </div>

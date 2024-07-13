@@ -2,7 +2,7 @@ import { storageService } from "./async-storage.service.js"
 import { utilService } from "./util.service.js"
 
 
-export const toyService = { query, getById, reomve, save, getDefaultFilter }
+export const toyService = { query, getById, reomve, save, getDefaultFilter, getEmptyToy, getLabels }
 const DB_TOYS = 'DB_TOYS'
 _createData()
 
@@ -35,6 +35,28 @@ function getDefaultFilter() {
     return { name: '', inStock: 'all', labels: [], sort: 'name' }
 }
 
+function getEmptyToy() {
+    return {
+        name: '',
+        price: 50,
+        labels: [],
+        createdAt: new Date(),
+        isStock: false,
+        color: '#ffffff',
+
+    }
+}
+
+function getLabels() {
+    return [
+        "Doll", "Battery Powered", "Baby", "Educational", "Outdoor",
+        "Collectible", "Soft", "Interactive", "Puzzle", "Remote Controlled",
+        "Wooden", "Plastic", "Electronic", "Handcrafted", "Light-Up",
+        "Musical", "Stuffed", "Ride-On", "Sports", "Creative"
+    ]
+
+}
+
 function _setNextPrevToyId(toy) {
     return storageService.query(DB_TOYS).then((toys) => {
         const toyIdx = toys.findIndex((currToy) => currToy._id === toy._id)
@@ -52,12 +74,12 @@ function _createData(length = 24) {
         for (var i = 0; i < length; i++) {
             const toy = {
                 _id: utilService.makeId(),
-                name: getRandomItem('name'),
-                price: getRandomItem('price'),
-                labels: getRandomItem('labels'),
+                name: _getRandomItem('name'),
+                price: _getRandomItem('price'),
+                labels: _getRandomItem('labels'),
                 createdAt: new Date(),
-                inStock: getRandomItem('isStock'),
-                color: getRandomItem('color'),
+                inStock: _getRandomItem('isStock'),
+                color: _getRandomItem('color'),
             }
             toys.push(toy)
         }
@@ -65,7 +87,7 @@ function _createData(length = 24) {
     }
 
 }
-function getRandomItem(type) {
+function _getRandomItem(type) {
     const toyNames = [
         "Talking Doll", "Tall Cowboy", "Race Car", "Action Figure", "Stuffed Bear",
         "Remote Helicopter", "Building Blocks", "Puzzle Box", "Water Gun", "Robot",

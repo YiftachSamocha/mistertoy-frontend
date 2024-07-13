@@ -10,7 +10,7 @@ export function ToyDetails() {
         toyService.getById(toyId)
             .then(foundToy => setToy(foundToy))
     }, [toyId])
-    if (!toy || Object.keys(toy).length === 0) return <div className="no-toy">No toy to show...</div>
+    if (!toy || Object.keys(toy).length === 0) return <div className="no-toy">Loading...</div>
 
     return <section className="toy-details" style={{ backgroundColor: toy.color }}>
         <div className="nav-toy-details">
