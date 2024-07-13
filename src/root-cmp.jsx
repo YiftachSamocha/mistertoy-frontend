@@ -1,3 +1,4 @@
+import './assets/style/main.css'
 import { Provider } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";
@@ -5,10 +6,9 @@ import { About } from "./pages/About.jsx";
 import { ToyIndex } from "./pages/ToyIndex.jsx";
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { store } from "./store/store.js";
-
-import './assets/style/main.css'
 import { ToyDetails } from "./pages/ToyDetails.jsx";
 import { ToyEdit } from "./pages/ToyEdit.jsx";
+import { UserMsg } from "./cmps/UserMsg.jsx";
 
 
 export function App() {
@@ -29,6 +29,7 @@ export function App() {
                         </Routes>
                     </main>
                 </section>
+                <UserMsg />
             </Router>
         </Provider>
     )
