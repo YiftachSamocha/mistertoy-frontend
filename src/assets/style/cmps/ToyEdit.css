@@ -99,7 +99,7 @@
 }
 
 #labels label {
-    font-size: 1em; /* Slightly larger font size */
-    margin-bottom: 0; /* Remove bottom margin */
-    font-weight: normal; /* Normal font weight */
+    font-size: 1em; 
+    margin-bottom: 0; 
+    font-weight: normal; 
 }

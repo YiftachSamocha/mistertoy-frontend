@@ -1,32 +1,28 @@
 .user-msg {
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 10px 20px;
     border-radius: 5px;
     z-index: 1000;
-    /* Ensure it appears above other content */
     display: flex;
     align-items: center;
 }
 
 .user-msg.error {
     background-color: #f44336;
-    /* Red for error messages */
     color: #ffffff;
 }
 
 .user-msg.success {
     background-color: #4caf50;
-    /* Green for success messages */
     color: #ffffff;
 }
 
 .user-msg.warning {
     background-color: #ff9800;
-    /* Orange for warning messages */
     color: #ffffff;
 }
 

@@ -11,13 +11,13 @@
 }
 
 .filterBy div {
-    flex: 1; /* Distribute each div in the row equally */
+    flex: 1;
     margin-bottom: 15px;
 }
 
 .filterBy label {
     display: block;
-    font-size: 1.2em; /* Increased font size */
+    font-size: 1.2em; 
     margin-bottom: 5px;
     font-weight: bold;
 }
@@ -33,7 +33,7 @@
 }
 
 .filterBy .label-container {
-    flex-basis: 100%; /* Take full width of the row */
+    flex-basis: 100%; 
     display: flex;
     align-items: center;
     justify-content: space-between;
