@@ -5,7 +5,8 @@ export const utilService = {
     loadFromStorage,
     saveToStorage,
     animateCSS,
-    debounce
+    debounce,
+    getShopsCoords,
 }
 
 function makeId(length = 6) {
@@ -70,4 +71,18 @@ function debounce(func, timeout = 300) {
             func.apply(this, args)
         }, timeout)
     }
+}
+
+function getShopsCoords() {
+    return [
+        { name: 'Tel Aviv', lat: 32.0853, lng: 34.7818 },
+        { name: 'Jerusalem', lat: 31.7683, lng: 35.2137 },
+        { name: 'Haifa', lat: 32.7940, lng: 34.9896 },
+        { name: 'Be\'er Sheva', lat: 31.2518, lng: 34.7913 },
+        { name: 'Eilat', lat: 29.5581, lng: 34.9482 },
+        { name: 'Ashdod', lat: 31.8014, lng: 34.6431 },
+        { name: 'Netanya', lat: 32.3215, lng: 34.8532 }
+    ];
+
+
 }
