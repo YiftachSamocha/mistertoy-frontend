@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GoogleMapReact from 'google-map-react';
-import { utilService } from "../services/util.service";
+import { utilService } from "../services/util.service.js";
 
 
 export function GoogleMap() {
