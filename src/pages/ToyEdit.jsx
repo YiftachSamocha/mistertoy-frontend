@@ -3,13 +3,25 @@ import { saveToy } from "../store/actions/toy.actions.js"
 import { toyService } from "../services/toy.service.js"
 import { useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { FormControl, Input, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material"
+import { NumberInputIntroduction } from "./NumberInputIntroduction.jsx"
+
 
 export function ToyEdit() {
     const [toyToSave, setToyToSave] = useState(toyService.getEmptyToy())
-    const [isLabelsOpened, setIsLabelsOpened] = useState(false)
     const { id } = useParams()
     const navigate = useNavigate()
     const labels = toyService.getLabels()
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 250,
+            },
+        },
+    }
 
     useEffect(() => {
         if (id) {
@@ -19,17 +31,9 @@ export function ToyEdit() {
     }, [id])
 
     function handleChange({ target }) {
-        let { name, type, value, checked } = target
+        let { name, type, value, checked, componentName } = target
         if (name === 'inStock') value = checked
-        else if (type === 'checkbox') {
-            if (checked) setToyToSave({ ...toyToSave, labels: [...toyToSave.labels, name] })
-            else {
-                const updatedLabels = toyToSave.labels.filter(label => label !== name)
-                setToyToSave({ ...toyToSave, labels: updatedLabels })
-            }
-            return
-
-        }
+        if (componentName) name = componentName
         setToyToSave({ ...toyToSave, [name]: value })
     }
 
@@ -44,12 +48,11 @@ export function ToyEdit() {
     }
 
     return <section className="save-toy">
+
         <h2>{id ? 'Edit' : 'Add'} Toy!</h2>
-        <div>
-            <label htmlFor="name">Name:</label>
-            <input type="text" name="name" id="name"
-                value={toyToSave.name} onChange={handleChange} />
-        </div>
+        <Input aria-label="Demo input" placeholder="Enter Toy Name..." name="name"
+            value={toyToSave.name} onChange={handleChange} />
+        {/* <NumberInputIntroduction value={toyToSave.price} handleChange={handleChange} /> */}
         <div>
             <label htmlFor="price">Price:</label>
             <input type="number" min="50" max="200" name="price" id="price"
@@ -65,23 +68,32 @@ export function ToyEdit() {
             <input type="checkbox" name="inStock" id="inStock"
                 checked={toyToSave.inStock} onChange={handleChange} />
         </div>
-        <div className="label-container">
-            <label htmlFor="lables">Labels:</label>
-            <button type="button" onClick={() => setIsLabelsOpened(!isLabelsOpened)}>
-                {isLabelsOpened ? 'Hide Labels' : 'Show Labels'}
-            </button>
+        <div>
+            <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">Labels</InputLabel>
+                <Select
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={toyToSave.labels}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Label" />}
+                    MenuProps={MenuProps}
+                    name="labels"
+                >
+                    {labels.map((label) => (
+                        <MenuItem
+                            key={label}
+                            value={label}
+                        >
+                            {label}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
         </div>
-        {isLabelsOpened && <div id="labels" onChange={handleChange} multiple size={labels.length} >
-            {labels.map(label => {
-                return <div key={label}>
-                    <label htmlFor={label}>{label}</label>
-                    <input type="checkbox" name={label} onChange={handleChange}
-                        checked={toyToSave.labels.includes(label)}></input>
-                </div>
-            })}
-        </div>}
 
-        <button onClick={onSaveToy}>{id ? 'Edit' : 'Add'}</button>
+        <button onClick={onSaveToy} className="submit-btn">{id ? 'Edit' : 'Add'}</button>
 
     </section>
 }

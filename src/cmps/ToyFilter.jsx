@@ -50,7 +50,7 @@ export function ToyFilter() {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={filterBy.inStock}
-                    label="Sort"
+                    label="inStock"
                     onChange={handleChange}
                     name="inStock"
                 >

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { login, signup } from "../store/actions/user.actions.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { Input } from "@mui/base"
 
 export function LoginSignup() {
     const [isSignup, setIsSignup] = useState(false)
@@ -26,17 +27,19 @@ export function LoginSignup() {
     return <section className="login-signup">
         <div>
             <label htmlFor="username">Username:</label>
-            <input type="text" name="username" id="username" placeholder="Enter username..."
+            <Input aria-label="Demo input" placeholder="Enter Username..." name="username"
                 value={credentials.username} onChange={handleChange} />
         </div>
+
+
         <div>
-            <label htmlFor="password">Username:</label>
-            <input type="text" name="password" id="password" placeholder="Enter password..."
+            <label htmlFor="password">Password</label>
+            <Input aria-label="Demo input" placeholder="Enter Password..." name="password"
                 value={credentials.password} onChange={handleChange} />
         </div>
         {isSignup && <div>
             <label htmlFor="fullname">Full Name:</label>
-            <input type="text" name="fullname" id="fullname" placeholder="Enter your name..."
+            <Input aria-label="Demo input" placeholder="Enter Full name..." name="fullname"
                 value={credentials.fullname} onChange={handleChange} />
         </div>}
 

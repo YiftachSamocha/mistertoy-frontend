@@ -21,14 +21,13 @@
 
 .save-toy label {
     display: block;
-    font-size: 1.2em; 
+    font-size: 1.2em;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.save-toy input[type="text"],
-.save-toy input[type="number"],
 .save-toy input[type="color"],
+.save-toy input[type="number"],
 .save-toy input[type="checkbox"],
 .save-toy select {
     width: 100%;
@@ -38,7 +37,8 @@
     border-radius: 5px;
     font-size: 1em;
 }
-.save-toy input[type="color"]{
+
+.save-toy input[type="color"] {
     padding: 0;
 }
 
@@ -46,7 +46,7 @@
     height: auto;
 }
 
-.save-toy button {
+.save-toy .submit-btn {
     display: block;
     width: 100%;
     padding: 10px;
@@ -99,7 +99,7 @@
 }
 
 #labels label {
-    font-size: 1em; 
-    margin-bottom: 0; 
-    font-weight: normal; 
+    font-size: 1em;
+    margin-bottom: 0;
+    font-weight: normal;
 }
