@@ -1,5 +1,6 @@
-.login-signup {
+.my-form {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 15px;
     background-color: #f9f9f9;
@@ -9,9 +10,7 @@
 }
 
 .login-signup div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    color: black;
 }
 
 .login-signup label {
@@ -20,15 +19,10 @@
     color: black;
 }
 
-.login-signup input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-}
+
 
 .login-signup .message {
-    color: #007bff;
+    color: #ffeb3b;
     cursor: pointer;
     margin-top: 0;
     text-align: center;

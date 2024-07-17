@@ -1,54 +1,108 @@
-import { useState } from "react"
-import { login, signup } from "../store/actions/user.actions.js"
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
-import { Input } from "@mui/base"
+import { useState } from "react";
+import { login, signup } from "../store/actions/user.actions.js";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { TextField } from '@mui/material';
 
 export function LoginSignup() {
-    const [isSignup, setIsSignup] = useState(false)
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
+    const [isSignup, setIsSignup] = useState(false);
 
-    function handleChange({ target }) {
-        const { name, value } = target
-        setCredentials({ ...credentials, [name]: value })
-    }
-
-    function onSubmit() {
+    function onSubmit(values, { setSubmitting }) {
         if (isSignup) {
-            signup(credentials)
-                .then(() => showSuccessMsg('Signed up successfully'))
-                .catch(() => showErrorMsg('Cannot sign up'))
-        }
-        else {
-            login(credentials)
-                .then(() => showSuccessMsg('Logged in successfully'))
-                .catch(() => showErrorMsg('Cannot log in'))
+            signup(values)
+                .then(() => {
+                    showSuccessMsg('Signed up successfully');
+                    setSubmitting(false);
+                })
+                .catch(() => {
+                    showErrorMsg('Cannot sign up');
+                    setSubmitting(false);
+                });
+        } else {
+            login(values)
+                .then(() => {
+                    showSuccessMsg('Logged in successfully');
+                    setSubmitting(false);
+                })
+                .catch(() => {
+                    showErrorMsg('Cannot log in');
+                    setSubmitting(false);
+                });
         }
     }
-    return <section className="login-signup">
-        <div>
-            <label htmlFor="username">Username:</label>
-            <Input aria-label="Demo input" placeholder="Enter Username..." name="username"
-                value={credentials.username} onChange={handleChange} />
-        </div>
 
+    const SignupSchema = Yup.object().shape({
+        username: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        fullname: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        password: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+    });
 
-        <div>
-            <label htmlFor="password">Password</label>
-            <Input aria-label="Demo input" placeholder="Enter Password..." name="password"
-                value={credentials.password} onChange={handleChange} />
-        </div>
-        {isSignup && <div>
-            <label htmlFor="fullname">Full Name:</label>
-            <Input aria-label="Demo input" placeholder="Enter Full name..." name="fullname"
-                value={credentials.fullname} onChange={handleChange} />
-        </div>}
+    const LoginSchema = Yup.object().shape({
+        username: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        password: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+    });
 
-        <button onClick={onSubmit}>{isSignup ? 'Sign up' : 'Log in'}</button>
+    function CustomInput(props) {
+        return (
+            <TextField {...props} id="outlined-basic" variant="outlined" />
+        );
+    }
 
-        <div className="message" onClick={() => setIsSignup(!isSignup)}>
-            {isSignup ? 'Already signed up? Login' : 'New here? Sign up'}
-        </div>
+    return (
+        <section className="login-signup">
+            <div>
+                <Formik
+                    initialValues={{
+                        username: '',
+                        password: '',
+                        fullname: '',
+                    }}
+                    validationSchema={isSignup ? SignupSchema : LoginSchema}
+                    onSubmit={onSubmit}
+                >
+                    {({ errors, touched, isSubmitting }) => (
+                        <Form className='my-form'>
+                            <Field as={CustomInput} name="username" label="Username" />
+                            {errors.username && touched.username && (
+                                <div>{errors.username}</div>
+                            )}
+                            <Field as={CustomInput} name="password" label="Password" type="password" />
+                            {errors.password && touched.password && (
+                                <div>{errors.password}</div>
+                            )}
 
+                            {isSignup && (
+                                <>
+                                    <Field as={CustomInput} name="fullname" label="Fullname" />
+                                    {errors.fullname && touched.fullname && <div>{errors.fullname}</div>}
+                                </>
+                            )}
 
-    </section>
+                            <button type="submit" disabled={isSubmitting}>{isSignup ? 'Sign up' : 'Log in'}</button>
+                        </Form>
+                    )}
+                </Formik>
+            </div>
+
+            <div className="message" onClick={() => setIsSignup(!isSignup)}>
+                {isSignup ? 'Already signed up? Login' : 'New here? Sign up'}
+            </div>
+        </section>
+    );
 }

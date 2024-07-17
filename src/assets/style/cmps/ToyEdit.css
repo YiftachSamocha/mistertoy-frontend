@@ -64,28 +64,6 @@
     background-color: #0056b3;
 }
 
-.save-toy .label-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.save-toy .label-container button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: inherit;
-    color: black;
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100px;
-    transition: background-color 0.3s;
-}
-
-.save-toy .label-container button:hover {
-    background-color: #0056b3;
-}
-
 #labels {
     display: flex;
     flex-wrap: wrap;

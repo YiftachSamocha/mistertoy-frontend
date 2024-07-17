@@ -22,7 +22,10 @@
     font-weight: bold;
 }
 
-.filterBy input[type="text"],
+.filterBy div{
+    height: 5em;
+    margin: 0;
+}
 .filterBy select {
     width: 40%;
     padding: 10px;

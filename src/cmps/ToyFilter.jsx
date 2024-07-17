@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { TextField } from "@mui/material";
+import { Input, TextField } from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -32,16 +32,8 @@ export function ToyFilter() {
         store.dispatch({ type: SET_FILTER_BY, filterBy: { ...filterBy, [name]: value } })
     }
     return <section className="filterBy">
-        <div>
-            <TextField
-                id="name"
-                label="Name"
-                variant="outlined"
-                name="name"
-                value={filterBy.name}
-                onChange={handleChange}
-            />
-        </div>
+        <Input aria-label="Demo input" placeholder="Name" name="name"
+            value={filterBy.name} onChange={handleChange} />
 
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
