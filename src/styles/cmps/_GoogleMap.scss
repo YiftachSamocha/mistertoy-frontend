@@ -8,9 +8,14 @@
     box-shadow: 0 4px 8px $clr-black;
     padding: $layoutPadding;
     margin: 1.5em auto;
+    max-width: 40em;
 
     button {
-       @include btn(regular, $clr-white, $clr-dark-white)
+       @include btn(regular, $clr-white)
+    }
+    .all-shops{
+        border: 1px solid $clr-black;
+        margin: 1em;
     }
 
 

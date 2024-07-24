@@ -4,25 +4,20 @@
     }
 }
 
-@mixin for-narrow-layout {
+@mixin for-tablet-layout {
     @media (min-width: $break-narrow) {
         @content;
     }
 }
 
-@mixin for-normal-layout {
-    @media (min-width: $break-normal) {
-        @content;
-    }
-}
-
-@mixin for-wide-layout {
+@mixin for-desktop-layout {
     @media (min-width: $break-wide) {
         @content;
     }
 }
 
-@mixin btn($type: regular, $clr: $clr-blue, $clr-hover: $clr-dark-blue) {
+
+@mixin btn($type: regular, $clr: $clr-blue) {
     padding: em(8px) em(12px);
     background-color: $clr;
     border: none;
@@ -33,7 +28,7 @@
 
     @if $type ==regular {
         &:hover {
-            background-color: $clr-hover
+            background-color: darken($clr, 15%)
         }
     }
 
@@ -44,7 +39,7 @@
         color: black;
 
         &:hover {
-            background-color: $clr-hover;
+            background-color: darken($clr, 20%)
         }
     }
 }

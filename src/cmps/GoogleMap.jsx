@@ -25,7 +25,7 @@ export function GoogleMap() {
     }
 
     return (
-        <div style={{ height: '80vh', width: '50%' }} className="map-container">
+        <div style={{ height: '80vh', width: '60%' }} className="map-container">
             <GoogleMapReact
                 bootstrapURLKeys={{ key: "AIzaSyCAqcL5arG9eTzRzMjYoAFOa3WlJeManoc" }}
                 center={coords}
@@ -41,7 +41,7 @@ export function GoogleMap() {
                 })}
 
             </GoogleMapReact>
-            <button onClick={setInital}>All Shops</button>
+            <button onClick={setInital} className="all-shops">All Shops</button>
         </div>
     )
 }

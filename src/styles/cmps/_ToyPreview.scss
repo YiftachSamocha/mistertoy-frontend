@@ -11,12 +11,12 @@
     }
 
     h3.in-stock {
-        color: green;
+        color: $clr-green;
     }
 
     h4 {
         font-size: 1.3em;
-        color: #666;
+        color: $clr-gray;
     }
 
     div {

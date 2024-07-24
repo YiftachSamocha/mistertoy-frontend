@@ -2,10 +2,15 @@
     padding: 1.5em;
     margin: 1.5em;
 
-    a {
-        text-align: center;
-        .add-button {
-            @include btn(regular, $clr-green, $clr-dark-green);
+
+    .add-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5em;
+
+        button {
+            text-align: center;
+            @include btn(regular, $clr-green);
         }
     }
 }

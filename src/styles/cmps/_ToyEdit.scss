@@ -4,17 +4,25 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px $clr-black;
     margin: 1.5em auto;
-    width: 60%;
+    width: 75%;
 
     h2 {
         font-size: 1.8em;
         text-align: center;
     }
 
-    div {
-        margin-bottom: 1em;
+    .short-inputs {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: em(10px);
+
+        div {
+            margin: 1em;
+            width: 100%;
+            
+        }
     }
 
     label {
@@ -39,7 +47,8 @@
     }
 
     .MuiFormControl-root {
-        width: 100%;
+        width: 60%;
+        margin-block: 1em;
     }
 
     select {
@@ -49,6 +58,16 @@
     .submit-btn {
         width: 100%;
         @include btn(regular)
+    }
+
+    @include for-mobile-layout {
+        div {
+            margin: 0;
+        }
+
+        .short-inputs {
+            flex-direction: column;
+        }
     }
 
 }

@@ -4,7 +4,7 @@ import { toyService } from "../services/toy.service.js"
 import { useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { FormControl, Input, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material"
-import { NumberInputIntroduction } from "./NumberInputIntroduction.jsx"
+
 
 
 export function ToyEdit() {
@@ -53,21 +53,24 @@ export function ToyEdit() {
         <Input aria-label="Demo input" placeholder="Enter Toy Name..." name="name"
             value={toyToSave.name} onChange={handleChange} />
         {/* <NumberInputIntroduction value={toyToSave.price} handleChange={handleChange} /> */}
-        <div>
-            <label htmlFor="price">Price:</label>
-            <input type="number" min="50" max="200" name="price" id="price"
-                value={toyToSave.price} onChange={handleChange} />
+        <div className="short-inputs">
+            <div>
+                <label htmlFor="price">Price:</label>
+                <input type="number" min="50" max="200" name="price" id="price"
+                    value={toyToSave.price} onChange={handleChange} />
+            </div>
+            <div>
+                <label htmlFor="color">Color:</label>
+                <input type="color" name="color" id="color"
+                    value={toyToSave.color} onChange={handleChange} />
+            </div>
+            <div className="instock">
+                <label htmlFor="inStock">{toyToSave.inStock ? 'In Stock!' : 'Not in Stock'}</label>
+                <input type="checkbox" name="inStock" id="inStock"
+                    checked={toyToSave.inStock} onChange={handleChange} />
+            </div>
         </div>
-        <div>
-            <label htmlFor="color">Color:</label>
-            <input type="color" name="color" id="color"
-                value={toyToSave.color} onChange={handleChange} />
-        </div>
-        <div className="instock">
-            <label htmlFor="inStock">{toyToSave.inStock ? 'In Stock!' : 'Not in Stock'}</label>
-            <input type="checkbox" name="inStock" id="inStock"
-                checked={toyToSave.inStock} onChange={handleChange} />
-        </div>
+
         <div>
             <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">Labels</InputLabel>

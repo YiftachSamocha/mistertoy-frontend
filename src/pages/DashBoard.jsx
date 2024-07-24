@@ -24,8 +24,6 @@ ChartJS.register(
     Legend
 );
 
-
-
 export const options = {
     responsive: true,
     plugins: {
@@ -38,11 +36,6 @@ export const options = {
         },
     },
 }
-
-
-
-
-
 
 export function DashBoard() {
     const [priceChart, setPriceChart] = useState([])

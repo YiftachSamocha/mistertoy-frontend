@@ -4,10 +4,12 @@
     align-items: center;
     padding: $layoutPadding;
     border-radius: 10px;
+    width: 100%;
 
 
     .chart-container {
         width: 100%;
+        max-width: 80vw;
     }
 
     select {
@@ -21,7 +23,7 @@
 
     select:focus {
         border-color: $clr-blue;
-        box-shadow: 0 0 5px $clr-dark-blue;
+        box-shadow: 0 0 5px darken($clr-blue, 20%);
         outline: none;
     }
 
@@ -29,5 +31,3 @@
         width: 25%;
     }
 }
-
-

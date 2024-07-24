@@ -11,11 +11,11 @@
 
         h1 {
             color: $clr-yellow;
-            margin-right: em(5px);
+            margin-right: em(10px);
         }
 
         nav {
-            margin-left: em(5px);
+            margin-left: em(10px);
             display: flex;
             gap: 1.5em;
 
@@ -37,7 +37,7 @@
             gap: 0.5em;
 
             button {
-                @include btn(regular, $clr-red, $clr-dark-red)
+                @include btn(regular, $clr-red)
             }
         }
 
@@ -46,4 +46,33 @@
             font-size: 1em;
         }
     }
+
+    @include for-mobile-layout {}
+}
+
+.sidebar {
+    a {
+        text-decoration: none;
+        font-size: 1.2em;
+        transition: color 0.3s ease;
+        color: $clr-black;
+        width: 100%;
+    }
+
+    a:hover {
+        color: $clr-yellow;
+    }
+
+}
+
+.sidebar-btn {
+    color: $clr-white;
+    margin: 1em;
+    padding: 0;
+    font-size: 3em;
+}
+
+.sidebar-btn:hover {
+    background-color: inherit;
+    color: $clr-yellow;
 }
