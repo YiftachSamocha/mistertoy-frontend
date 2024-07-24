@@ -1,4 +1,3 @@
-import './assets/style/main.css'
 import { Provider } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";

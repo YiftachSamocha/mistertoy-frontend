@@ -1,0 +1,14 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: $layoutPadding 1fr $layoutPadding;
+
+    >*.full {
+        grid-column: 1 / -1;
+    }
+
+    >*:not(.full) {
+        grid-column: 2;
+    }
+
+   
+}

@@ -63,7 +63,7 @@ export function ToyEdit() {
             <input type="color" name="color" id="color"
                 value={toyToSave.color} onChange={handleChange} />
         </div>
-        <div>
+        <div className="instock">
             <label htmlFor="inStock">{toyToSave.inStock ? 'In Stock!' : 'Not in Stock'}</label>
             <input type="checkbox" name="inStock" id="inStock"
                 checked={toyToSave.inStock} onChange={handleChange} />

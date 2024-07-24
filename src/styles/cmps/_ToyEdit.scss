@@ -1,0 +1,54 @@
+.save-toy {
+    padding: 1.5em;
+    margin: 1.5em;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px $clr-black;
+    margin: 1.5em auto;
+    width: 60%;
+
+    h2 {
+        font-size: 1.8em;
+        text-align: center;
+    }
+
+    div {
+        margin-bottom: 1em;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    label {
+        display: block;
+        font-size: 1.2em;
+        margin-bottom: em(5px);
+        font-weight: bold;
+    }
+
+    input[type="color"],
+    input[type="number"],
+    select {
+        padding: em(10px);
+        margin-top: em(5px);
+        border: 1px solid $clr-gray;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    input[type="color"] {
+        padding: 0;
+    }
+
+    .MuiFormControl-root {
+        width: 100%;
+    }
+
+    select {
+        height: auto;
+    }
+
+    .submit-btn {
+        width: 100%;
+        @include btn(regular)
+    }
+
+}

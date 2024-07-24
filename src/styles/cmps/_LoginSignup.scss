@@ -1,0 +1,38 @@
+.my-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    background-color: $clr-white;
+    padding: em(10px);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px $clr-black;
+}
+
+.login-signup {
+    div {
+        color: $clr-black;
+    }
+
+    label {
+        font-size: 1em;
+        margin-bottom: em(5px);
+        color: $clr-black;
+    }
+
+    .message {
+        color: $clr-yellow;
+        cursor: pointer;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .message:hover {
+        text-decoration: underline;
+    }
+
+    button {
+        @include btn(regular)
+    }
+
+}

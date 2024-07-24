@@ -18,7 +18,7 @@ export function ToyDetails() {
             <Link to={'/toy/' + toy.nextToyId}><button><i className="fa-solid fa-arrow-right"></i></button></Link>
         </div>
         <h1>{toy.name}</h1>
-        <h2>Price: {toy.price}</h2>
+        <h2>Price: {toy.price}₪</h2>
         <p>Labels:</p>
         {toy.labels.map(label => {
             return <div className="label" key={utilService.makeId()}>{label}</div>

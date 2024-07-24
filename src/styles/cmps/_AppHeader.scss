@@ -1,0 +1,49 @@
+.app-header {
+    box-shadow: 0 2px 4px $clr-black;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding: calc($layoutPadding/2) $layoutPadding;
+        width: 100%;
+        align-items: center;
+        background-color: $clr-gray;
+
+        h1 {
+            color: $clr-yellow;
+            margin-right: em(5px);
+        }
+
+        nav {
+            margin-left: em(5px);
+            display: flex;
+            gap: 1.5em;
+
+            a {
+                text-decoration: none;
+                font-size: 1.2em;
+                transition: color 0.3s ease;
+                color: $clr-white;
+            }
+
+            a:hover {
+                color: $clr-yellow;
+            }
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+
+            button {
+                @include btn(regular, $clr-red, $clr-dark-red)
+            }
+        }
+
+        & {
+            color: $clr-white;
+            font-size: 1em;
+        }
+    }
+}

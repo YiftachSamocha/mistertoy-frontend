@@ -37,7 +37,7 @@ export function ToyFilter() {
 
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">In Stock:</InputLabel>
+                <InputLabel id="demo-simple-select-label">In Stock</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"

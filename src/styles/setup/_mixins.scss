@@ -1,0 +1,50 @@
+@mixin for-mobile-layout {
+    @media (max-width: $break-narrow) {
+        @content;
+    }
+}
+
+@mixin for-narrow-layout {
+    @media (min-width: $break-narrow) {
+        @content;
+    }
+}
+
+@mixin for-normal-layout {
+    @media (min-width: $break-normal) {
+        @content;
+    }
+}
+
+@mixin for-wide-layout {
+    @media (min-width: $break-wide) {
+        @content;
+    }
+}
+
+@mixin btn($type: regular, $clr: $clr-blue, $clr-hover: $clr-dark-blue) {
+    padding: em(8px) em(12px);
+    background-color: $clr;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    @if $type ==regular {
+        &:hover {
+            background-color: $clr-hover
+        }
+    }
+
+
+    @if $type ==preview {
+        margin: em(5px);
+        background-color: inherit;
+        color: black;
+
+        &:hover {
+            background-color: $clr-hover;
+        }
+    }
+}

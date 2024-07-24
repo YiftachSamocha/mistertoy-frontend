@@ -1,0 +1,57 @@
+// ::selection {
+//     background-color: $clr1;
+//     color: $clr3;
+// }
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Bahnschrift, sans-serif;
+    line-height: 1.8;
+    line-height: lh(26px);
+
+    @media (max-width: 1300px) {
+        font-size: 13px;
+    }
+}
+
+body {
+    margin: 0;
+}
+
+h1 {
+    font-size: rem(30px);
+    
+}
+
+
+
+img {
+    width: 100%;
+}
+
+
+
+// // .btn {
+// //     @include btn;
+
+// //     &-dark {
+// //         @include btn($type: dark);
+// //     }
+
+// //     &-light {
+// //         @include btn($type: light);
+// //     }
+// // }
+
+
+
+// a {
+//     color: $clr1;
+
+//     &.active {
+//         color: $clr2;
+//     }
+// }

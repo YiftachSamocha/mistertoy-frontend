@@ -1,0 +1,11 @@
+.toy-index {
+    padding: 1.5em;
+    margin: 1.5em;
+
+    a {
+        text-align: center;
+        .add-button {
+            @include btn(regular, $clr-green, $clr-dark-green);
+        }
+    }
+}
