@@ -8,27 +8,27 @@ import { TextField } from '@mui/material';
 export function LoginSignup() {
     const [isSignup, setIsSignup] = useState(false);
 
-    function onSubmit(values, { setSubmitting }) {
+    async function onSubmit(values, { setSubmitting }) {
         if (isSignup) {
-            signup(values)
-                .then(() => {
-                    showSuccessMsg('Signed up successfully');
-                    setSubmitting(false);
-                })
-                .catch(() => {
-                    showErrorMsg('Cannot sign up');
-                    setSubmitting(false);
-                });
+            try {
+                await signup(values)
+                showSuccessMsg('Signed up successfully')
+                setSubmitting(false)
+            }
+            catch {
+                showErrorMsg('Cannot sign up')
+                setSubmitting(false)
+            }
         } else {
-            login(values)
-                .then(() => {
-                    showSuccessMsg('Logged in successfully');
-                    setSubmitting(false);
-                })
-                .catch(() => {
-                    showErrorMsg('Cannot log in');
-                    setSubmitting(false);
-                });
+            try {
+                await login(values)
+                showSuccessMsg('Logged in successfully')
+                setSubmitting(false)
+            }
+            catch {
+                showErrorMsg('Cannot log in')
+                setSubmitting(false)
+            }
         }
     }
 

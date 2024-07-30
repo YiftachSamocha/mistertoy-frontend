@@ -31,20 +31,19 @@ export function ToyEdit() {
     }, [id])
 
     function handleChange({ target }) {
-        let { name, type, value, checked, componentName } = target
+        let { name, value, checked, componentName } = target
         if (name === 'inStock') value = checked
         if (componentName) name = componentName
         setToyToSave({ ...toyToSave, [name]: value })
     }
 
-    function onSaveToy() {
-        saveToy(toyToSave)
-            .then(() => {
-                navigate('/toy')
-                showSuccessMsg(`Toy ${id ? 'Edited' : 'Added'} successfully`)
-            })
-            .catch(() => showErrorMsg(`Cannot ${id ? 'edit' : 'add'} toy...`))
-
+    async function onSaveToy() {
+        try {
+            await saveToy(toyToSave)
+            navigate('/toy')
+            showSuccessMsg(`Toy ${id ? 'Edited' : 'Added'} successfully`)
+        }
+        catch { showErrorMsg(`Cannot ${id ? 'edit' : 'add'} toy...`) }
     }
 
     return <section className="save-toy">

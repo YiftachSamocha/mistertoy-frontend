@@ -6,37 +6,35 @@ export const toyService = { query, getById, reomve, save, getDefaultFilter, getE
 const DB_TOYS = 'DB_TOYS'
 _createData()
 
-function query(filterBy = {}) {
-    return storageService.query(DB_TOYS)
-        .then(toys => {
-            if (filterBy.name) {
-                toys = toys.filter(toy => toy.name.includes(filterBy.name))
-            }
-            if (filterBy.inStock) {
-                if (filterBy.inStock === 'in') toys = toys.filter(toy => toy.inStock)
-                else if (filterBy.inStock === 'out') toys = toys.filter(toy => !toy.inStock)
-            }
-            if (filterBy.labels.length !== 0) {
-                toys = toys.filter(toy =>
-                    filterBy.labels.some(label => toy.labels.includes(label)))
+async function query(filterBy = {}) {
+    const toys = await storageService.query(DB_TOYS)
 
-            }
-            if (filterBy.sort) {
-                switch (filterBy.sort) {
-                    case 'name':
-                        toys = toys.sort((a, b) => a.name.localeCompare(b.name))
-                        break
-                    case 'price':
-                        toys = toys.sort((a, b) => a.price - b.price)
-                        break
-                    case 'date':
-                        toys = toys.sort((a, b) => a.createdAt - b.createdAt)
-                        break
-                }
-            }
+    if (filterBy.name) {
+        toys = toys.filter(toy => toy.name.includes(filterBy.name))
+    }
+    if (filterBy.inStock) {
+        if (filterBy.inStock === 'in') toys = toys.filter(toy => toy.inStock)
+        else if (filterBy.inStock === 'out') toys = toys.filter(toy => !toy.inStock)
+    }
+    if (filterBy.labels.length !== 0) {
+        toys = toys.filter(toy =>
+            filterBy.labels.some(label => toy.labels.includes(label)))
 
-            return toys
-        })
+    }
+    if (filterBy.sort) {
+        switch (filterBy.sort) {
+            case 'name':
+                toys = toys.sort((a, b) => a.name.localeCompare(b.name))
+                break
+            case 'price':
+                toys = toys.sort((a, b) => a.price - b.price)
+                break
+            case 'date':
+                toys = toys.sort((a, b) => a.createdAt - b.createdAt)
+                break
+        }
+    }
+    return toys
 }
 
 function save(toyToSave) {
@@ -48,12 +46,11 @@ function save(toyToSave) {
     }
 }
 
-function getById(toyId) {
-    return storageService.get(DB_TOYS, toyId)
-        .then(toy => {
-            toy = _setNextPrevToyId(toy)
-            return toy
-        })
+async function getById(toyId) {
+    const toy = await storageService.get(DB_TOYS, toyId)
+    toy = _setNextPrevToyId(toy)
+    return toy
+
 }
 
 function reomve(toyId) {
@@ -86,15 +83,15 @@ function getLabels() {
 
 }
 
-function _setNextPrevToyId(toy) {
-    return storageService.query(DB_TOYS).then((toys) => {
-        const toyIdx = toys.findIndex((currToy) => currToy._id === toy._id)
-        const nextToy = toys[toyIdx + 1] ? toys[toyIdx + 1] : toys[0]
-        const prevToy = toys[toyIdx - 1] ? toys[toyIdx - 1] : toys[toys.length - 1]
-        toy.nextToyId = nextToy._id
-        toy.prevToyId = prevToy._id
-        return toy
-    })
+async function _setNextPrevToyId(toy) {
+    const toys = await storageService.query(DB_TOYS)
+    const toyIdx = toys.findIndex((currToy) => currToy._id === toy._id)
+    const nextToy = toys[toyIdx + 1] ? toys[toyIdx + 1] : toys[0]
+    const prevToy = toys[toyIdx - 1] ? toys[toyIdx - 1] : toys[toys.length - 1]
+    toy.nextToyId = nextToy._id
+    toy.prevToyId = prevToy._id
+    return toy
+
 }
 
 function _createData(length = 24) {

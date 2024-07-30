@@ -11,12 +11,11 @@ function query(filterBy = {}) {
     return httpService.get(BASE_URL, filterBy)
 }
 
-function getById(toyId) {
-    return httpService.get(BASE_URL + toyId)
-        .then(toy => {
-            toy = _setNextPrevToyId(toy)
-            return toy
-        })
+async function getById(toyId) {
+    let toy = await httpService.get(BASE_URL + toyId)
+    toy = _setNextPrevToyId(toy)
+    return toy
+
 }
 
 function reomve(toyId) {
@@ -58,14 +57,13 @@ function getLabels() {
     ]
 }
 
-function _setNextPrevToyId(toy) {
-    return httpService.get(BASE_URL, filterBy)
-        .then((toys) => {
-            const toyIdx = toys.findIndex((currToy) => currToy._id === toy._id)
-            const nextToy = toys[toyIdx + 1] ? toys[toyIdx + 1] : toys[0]
-            const prevToy = toys[toyIdx - 1] ? toys[toyIdx - 1] : toys[toys.length - 1]
-            toy.nextToyId = nextToy._id
-            toy.prevToyId = prevToy._id
-            return toy
-        })
+async function _setNextPrevToyId(toy) {
+    const toys = await httpService.get(BASE_URL, filterBy)
+    const toyIdx = toys.findIndex((currToy) => currToy._id === toy._id)
+    const nextToy = toys[toyIdx + 1] ? toys[toyIdx + 1] : toys[0]
+    const prevToy = toys[toyIdx - 1] ? toys[toyIdx - 1] : toys[toys.length - 1]
+    toy.nextToyId = nextToy._id
+    toy.prevToyId = prevToy._id
+    return toy
+
 }

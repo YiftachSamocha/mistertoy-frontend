@@ -3,25 +3,21 @@ export const userService = { login, signup, logout, getLoggedinUser }
 const BASE_URL = 'auth/'
 const DB_CURR_USER = 'DB_CURR_USER'
 
-function login(user) {
-    return httpService.post(BASE_URL + 'login', user)
-        .then(userToSave => {
-            if (!userToSave) return Promise.reject('Cannot login')
-            return _setLoggedInUser(userToSave)
-        })
+async function login(user) {
+    const userToSave = await httpService.post(BASE_URL + 'login', user)
+    if (!userToSave) return Promise.reject('Cannot login')
+    return _setLoggedInUser(userToSave)
 }
 
-function signup(user) {
-    return httpService.post(BASE_URL + 'signup', user)
-        .then(userToSave => {
-            if (!userToSave) return Promise.reject('Cannot signup')
-            return _setLoggedInUser(userToSave)
-        })
+async function signup(user) {
+    const userToSave = await httpService.post(BASE_URL + 'signup', user)
+    if (!userToSave) return Promise.reject('Cannot signup')
+    return _setLoggedInUser(userToSave)
 }
 
-function logout() {
-    return httpService.post(BASE_URL + 'logout')
-        .then(() => sessionStorage.clear())
+async function logout() {
+    await httpService.post(BASE_URL + 'logout')
+    sessionStorage.clear()
 }
 
 
