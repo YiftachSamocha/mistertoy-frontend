@@ -43,13 +43,14 @@ export function DashBoard() {
     const [currLabel, setCurrLabel] = useState({ label: '', inStock: 50 })
     const labels = toyService.getLabels()
 
-    useEffect(async () => {
-        const chartA = await dashboardService.getPricesByLabelChart()
-        setPriceChart(chartA)
-
-        const chartB = await dashboardService.getInstockByLabelChart()
-        setInStockChart(chartB)
-        setCurrLabel(chartB[0])
+    useEffect(() => {
+        dashboardService.getPricesByLabelChart()
+            .then(chart => setPriceChart(chart))
+        dashboardService.getInstockByLabelChart()
+            .then(chart => {
+                setInStockChart(chart)
+                setCurrLabel(chart[0])
+            })
     }, [])
 
 
