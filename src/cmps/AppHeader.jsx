@@ -11,6 +11,7 @@ export function AppHeader() {
     const nav = [{ txt: 'Home', url: '/' }, { txt: 'About', url: '/about' }, { txt: 'Toys', url: '/toy' }, { txt: 'Dahboard', url: '/dashboard' }]
     const breakpoint = 600
     const [isNarrow, setIsNarrow] = useState(window.innerWidth < breakpoint)
+    const isAdminLogged = useSelector(state => state.userModule.isAdminLogged)
 
     useEffect(() => {
         const handleResize = () => {
@@ -29,6 +30,7 @@ export function AppHeader() {
             <h1>Toys!</h1>
             {loggedInUser ? <section className="user-info">
                 <div>Hello {loggedInUser.fullname}</div>
+                {isAdminLogged && <p>(Admin)</p>}
                 <button onClick={() => logout()}>Log out</button>
             </section> : <LoginSignup />}
             {isNarrow ? <SideBar nav={nav} /> : <nav>

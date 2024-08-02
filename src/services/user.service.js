@@ -26,7 +26,7 @@ function getLoggedinUser() {
 }
 
 function _setLoggedInUser(user) {
-    const userToSave = { fullname: user.fullname, _id: user._id }
+    const userToSave = { fullname: user.fullname, _id: user._id, isAdmin: user.isAdmin }
     sessionStorage.setItem(DB_CURR_USER, JSON.stringify(userToSave))
     return userToSave
 }
