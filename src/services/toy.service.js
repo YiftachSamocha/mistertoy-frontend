@@ -31,6 +31,14 @@ function save(toy) {
     }
 }
 
+// function addMsg(toyId, msg) {
+//     return httpService.post(BASE_URL + toyId + '/msg', msg)
+// }
+
+// function removeMsg(toyId, msgId) {
+//     return httpService.delete(BASE_URL + toyId + '/msg/:id', msgId)
+// }
+
 
 function getDefaultFilter() {
     return { name: '', inStock: 'all', labels: [], sort: 'name' }

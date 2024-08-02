@@ -34,7 +34,6 @@ export function toyReducer(state = initialState, action = {}) {
         case SET_FILTER_BY:
             return { ...state, filterBy: { ...state.filterBy, ...action.filterBy } }
 
-
         default:
             return state
     }
