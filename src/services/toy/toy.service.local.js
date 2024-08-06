@@ -1,10 +1,10 @@
-import { storageService } from "./async-storage.service.js"
-import { utilService } from "./util.service.js"
+import { storageService } from "../async-storage.service.js"
+import { utilService } from "../util.service.js"
 
-
-export const toyService = { query, getById, reomve, save, getDefaultFilter, getEmptyToy, getLabels }
+export const toyService = { query, getById, reomve, save}
 const DB_TOYS = 'DB_TOYS'
 _createData()
+
 
 async function query(filterBy = {}) {
     const toys = await storageService.query(DB_TOYS)
@@ -55,32 +55,6 @@ async function getById(toyId) {
 
 function reomve(toyId) {
     return storageService.remove(DB_TOYS, toyId)
-}
-
-function getDefaultFilter() {
-    return { name: '', inStock: 'all', labels: [], sort: 'name' }
-}
-
-function getEmptyToy() {
-    return {
-        name: '',
-        price: 50,
-        labels: [],
-        createdAt: new Date(),
-        inStock: false,
-        color: '#ffffff',
-
-    }
-}
-
-function getLabels() {
-    return [
-        "Doll", "Battery Powered", "Baby", "Educational", "Outdoor",
-        "Collectible", "Soft", "Interactive", "Puzzle", "Remote Controlled",
-        "Wooden", "Plastic", "Electronic", "Handcrafted", "Light-Up",
-        "Musical", "Stuffed", "Ride-On", "Sports", "Creative"
-    ]
-
 }
 
 async function _setNextPrevToyId(toy) {

@@ -1,10 +1,11 @@
 import { Link, useParams } from "react-router-dom"
 import { utilService } from "../services/util.service.js"
 import { useEffect, useState } from "react"
-import { toyService } from "../services/toy.service.js"
+import { toyService } from "../services/toy/index.js"
 import { saveToy } from "../store/actions/toy.actions.js"
 import { userService } from "../services/user.service.js"
 import { useSelector } from "react-redux"
+
 
 export function ToyDetails() {
     const [toy, setToy] = useState({})

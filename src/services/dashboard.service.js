@@ -1,4 +1,5 @@
-import { toyService } from "./toy.service.js"
+import { toyService } from "./toy"
+
 
 export const dashboardService = { getPricesByLabelChart, getInstockByLabelChart }
 

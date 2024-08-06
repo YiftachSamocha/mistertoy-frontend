@@ -10,9 +10,7 @@ import {
     ArcElement,
 } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
-import faker from 'faker';
 import { dashboardService } from '../services/dashboard.service.js';
-import { toyService } from '../services/toy.service.js';
 
 ChartJS.register(
     CategoryScale,
