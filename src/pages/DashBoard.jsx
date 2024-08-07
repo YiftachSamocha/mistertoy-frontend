@@ -11,6 +11,7 @@ import {
 } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
 import { dashboardService } from '../services/dashboard.service.js';
+import { toyService } from '../services/toy/index.js';
 
 ChartJS.register(
     CategoryScale,

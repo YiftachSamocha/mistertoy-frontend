@@ -3,8 +3,9 @@ import { utilService } from "../services/util.service.js"
 import { useEffect, useState } from "react"
 import { toyService } from "../services/toy/index.js"
 import { saveToy } from "../store/actions/toy.actions.js"
-import { userService } from "../services/user.service.js"
+import { userService } from "../services/user/index.js"
 import { useSelector } from "react-redux"
+
 
 
 export function ToyDetails() {
@@ -81,8 +82,6 @@ export function ToyDetails() {
 
 
         </section>
-
-
         <div className="back-btn"><Link to={'/toy'}><button>Back to page</button></Link></div>
     </section>
 }

@@ -1,4 +1,4 @@
-import { userService } from "../../services/user.service.js";
+import { userService } from "../../services/user/index.js";
 import { SET_USER } from "../reducers/user.reducer.js";
 import { store } from "../store.js";
 

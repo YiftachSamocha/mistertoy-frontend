@@ -1,9 +1,10 @@
-import { storageService } from "./async-storage.service.js"
-import { utilService } from "./util.service.js"
+import { utilService } from "../util.service.js"
+import { storageService } from "../async-storage.service.js"
 
 const DB_USERS = 'DB_USERS'
 const DB_CURR_USER = 'DB_CURR_USER'
-export const userService = { login, signup, logout, getLoggedinUser }
+
+export const userService = { login, signup, logout }
 
 async function signup(user) {
     user.createdAt = new Date()
@@ -25,14 +26,9 @@ function logout() {
     return Promise.resolve()
 }
 
-function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(DB_CURR_USER))
-}
-
-
-
 function _setLoggedInUser(user) {
-    const userToSave = { fullname: user.fullname, _id: user._id }
+    const userToSave = { fullname: user.fullname, _id: user._id, isAdmin: user.isAdmin }
     sessionStorage.setItem(DB_CURR_USER, JSON.stringify(userToSave))
     return userToSave
 }
+

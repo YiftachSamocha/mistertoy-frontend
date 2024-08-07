@@ -1,6 +1,5 @@
 import { toyService } from "./toy"
 
-
 export const dashboardService = { getPricesByLabelChart, getInstockByLabelChart }
 
 async function getInstockByLabelChart() {

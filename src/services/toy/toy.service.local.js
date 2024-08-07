@@ -7,7 +7,7 @@ _createData()
 
 
 async function query(filterBy = {}) {
-    const toys = await storageService.query(DB_TOYS)
+    let toys = await storageService.query(DB_TOYS)
 
     if (filterBy.name) {
         toys = toys.filter(toy => toy.name.includes(filterBy.name))
@@ -47,7 +47,7 @@ function save(toyToSave) {
 }
 
 async function getById(toyId) {
-    const toy = await storageService.get(DB_TOYS, toyId)
+    let toy = await storageService.get(DB_TOYS, toyId)
     toy = _setNextPrevToyId(toy)
     return toy
 

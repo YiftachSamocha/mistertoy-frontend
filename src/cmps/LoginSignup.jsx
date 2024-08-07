@@ -78,11 +78,11 @@ export function LoginSignup() {
                 >
                     {({ errors, touched, isSubmitting }) => (
                         <Form className='my-form'>
-                            <Field as={CustomInput} name="username" label="Username" />
+                            <Field as={CustomInput} id="username" name="username" label="Username" />
                             {errors.username && touched.username && (
                                 <div>{errors.username}</div>
                             )}
-                            <Field as={CustomInput} name="password" label="Password" type="password" />
+                            <Field as={CustomInput} id="password" name="password" label="Password" type="password" />
                             {errors.password && touched.password && (
                                 <div>{errors.password}</div>
                             )}
