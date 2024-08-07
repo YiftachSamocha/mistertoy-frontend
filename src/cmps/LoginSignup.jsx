@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login, signup } from "../store/actions/user.actions.js";
+import { login, signup } from "../store/actions/auth.actions.js";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';

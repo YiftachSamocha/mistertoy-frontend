@@ -1,8 +1,10 @@
 import { saveToy } from "../store/actions/toy.actions.js"
-import { userService } from "../services/user/index.js"
 import { useState } from "react"
 import { useSelector } from "react-redux"
-import { utilService } from "../services/util.service.js"
+import { authService } from "../services/auth/index.js"
+import { saveReview } from "../store/actions/review.actions.js"
+import { saveUser } from "../store/actions/user.actions.js"
+
 
 export function ToyReviews({ toy, setToy }) {
     const [isTextboxOpen, setIsTextboxOpen] = useState(false)
@@ -12,18 +14,25 @@ export function ToyReviews({ toy, setToy }) {
         const { value } = target
         setTxtReview(value)
     }
-    
+
 
     async function addReview() {
-        const currMsg = {
-            txt: txtReview,
-            id: utilService.makeId(),
-            by: userService.getLoggedinUser() || { fullname: 'Anonymous', id: utilService.makeId() },
-        }
-        const reviews = [...toy.reviews, currMsg]
-        const updatedToy = { ...toy, reviews: reviews }
+        const currUser = authService.getLoggedinUser()
+        //Add to review data
+        const reviewToReviewData = { txt: txtReview, userId: currUser._id, toyId: toy._id }
+        const savedReview = await saveReview(reviewToReviewData)
+
+        // Add to toy data
+        const reviewToToyData = { _id: savedReview._id, txt: savedReview.txt, userId: savedReview.userId }
+        const updatedToy = { ...toy, reviews: [...toy.reviews, reviewToToyData] }
         setToy(updatedToy)
         await saveToy(updatedToy)
+
+        //Add to user data
+        const reviewToUserData = { _id: savedReview._id, txt: savedReview.txt, toyId: savedReview.toyId }
+        const updatedUser = { ...currUser, reviews: [...currUser.reviews, reviewToUserData] }
+        await saveUser(updatedUser)
+
         setTxtReview('')
         setIsTextboxOpen(prev => !prev)
     }
@@ -33,14 +42,15 @@ export function ToyReviews({ toy, setToy }) {
         setToy(updatedToy)
         await saveToy(toy)
     }
+    if (!authService.getLoggedinUser()) return <div>Log in to add a review!</div>
 
-    return <section className="revies">
+    return <section className="reviews">
         <h3>Reviews:</h3>
         {toy.reviews.length === 0 && <p>No reviews... Add one!</p>}
         <div>
             {toy.reviews.map(review => {
                 return <div className="toy-review" key={review.id}>
-                    <h3>{review.by.fullname}</h3>
+                    {/* <h3>{review.by.fullname}</h3> */}
                     <p>{review.txt}</p>
                     {isAdminLogged && <button onClick={() => removeReview(review.id)}><i className="fa-solid fa-trash"></i></button>}
                 </div>

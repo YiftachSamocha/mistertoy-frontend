@@ -1,31 +1,29 @@
 import { httpService } from "../http.service.js"
-export const userService = { login, signup, logout }
-const BASE_URL = 'auth/'
-const DB_CURR_USER = 'DB_CURR_USER'
 
-async function login(user) {
-    const userToSave = await httpService.post(BASE_URL + 'login', user)
-    if (!userToSave) return Promise.reject('Cannot login')
-    return _setLoggedInUser(userToSave)
+export const userService = { query, getById, reomve, save}
+
+const BASE_URL = 'user/'
+
+
+function query(filterBy = {}) {
+    return httpService.get(BASE_URL, filterBy)
 }
 
-
-async function signup(user) {
-    const userToSave = await httpService.post(BASE_URL + 'signup', user)
-    if (!userToSave) return Promise.reject('Cannot signup')
-    return _setLoggedInUser(userToSave)
+async function getById(userId) {
+    return await httpService.get(BASE_URL + userId)
 }
 
-async function logout() {
-    await httpService.post(BASE_URL + 'logout')
-    sessionStorage.clear()
+function reomve(userId) {
+    return httpService.delete(BASE_URL + userId)
 }
 
-function _setLoggedInUser(user) {
-    const userToSave = { fullname: user.fullname, _id: user._id, isAdmin: user.isAdmin }
-    sessionStorage.setItem(DB_CURR_USER, JSON.stringify(userToSave))
-    return userToSave
+function save(user) {
+    if (user._id) {
+        return httpService.put(BASE_URL, user)
+    }
+    else {
+        return httpService.post(BASE_URL, user)
+    }
 }
-
 
 

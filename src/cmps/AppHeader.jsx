@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { LoginSignup } from "./LoginSignup.jsx";
 import { useSelector } from "react-redux";
-import { logout } from "../store/actions/user.actions.js";
+import { logout } from "../store/actions/auth.actions.js";
 import { useEffect, useState } from "react";
 import { SideBar } from "./MaterialUi/SideBar.jsx";
+
 
 
 

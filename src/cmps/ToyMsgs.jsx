@@ -1,8 +1,9 @@
 import { saveToy } from "../store/actions/toy.actions.js"
-import { userService } from "../services/user/index.js"
+import { authService } from "../services/auth/index.js"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { utilService } from "../services/util.service.js"
+
 
 export function ToyMsgs({ toy, setToy }) {
     const [isTextboxOpen, setIsTextboxOpen] = useState(false)
@@ -17,7 +18,7 @@ export function ToyMsgs({ toy, setToy }) {
         const currMsg = {
             txt: txtMsg,
             id: utilService.makeId(),
-            by: userService.getLoggedinUser() || { fullname: 'Anonymous', id: utilService.makeId() },
+            by: authService.getLoggedinUser() || { fullname: 'Anonymous', id: utilService.makeId() },
         }
         const msgs = [...toy.msgs, currMsg]
         const updatedToy = { ...toy, msgs }

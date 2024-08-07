@@ -16,7 +16,6 @@ async function getById(toyId) {
     let toy = await httpService.get(BASE_URL + toyId)
     toy = _setNextPrevToyId(toy)
     return toy
-
 }
 
 function reomve(toyId) {

@@ -1,34 +1,53 @@
-import { utilService } from "../util.service.js"
 import { storageService } from "../async-storage.service.js"
+import { utilService } from "../util.service.js"
 
+export const userService = { query, getById, reomve, save }
 const DB_USERS = 'DB_USERS'
-const DB_CURR_USER = 'DB_CURR_USER'
+_createData()
 
-export const userService = { login, signup, logout }
 
-async function signup(user) {
-    user.createdAt = new Date()
-    user._id = utilService.makeId()
-    await storageService.post(DB_USERS, user)
-    _setLoggedInUser(user)
-
+async function query(filterBy = {}) {
+    let users = await storageService.query(DB_USERS)
+    return users
 }
 
-async function login(userToLogin) {
-    const users = await storageService.query(DB_USERS)
-    const foundUser = users.find(user => user.password === userToLogin.password && user.username === userToLogin.username)
-    if (!foundUser) return Promise.reject('Cannot find user')
-    return _setLoggedInUser(foundUser)
+function save(userToSave) {
+    if (userToSave._id) {
+        return storageService.put(DB_USERS, userToSave)
+    }
+    else {
+        return storageService.post(DB_USERS, userToSave)
+    }
 }
 
-function logout() {
-    sessionStorage.clear()
-    return Promise.resolve()
+async function getById(userId) {
+    return await storageService.get(DB_USERS, userId)
 }
 
-function _setLoggedInUser(user) {
-    const userToSave = { fullname: user.fullname, _id: user._id, isAdmin: user.isAdmin }
-    sessionStorage.setItem(DB_CURR_USER, JSON.stringify(userToSave))
-    return userToSave
+function reomve(userId) {
+    return storageService.remove(DB_USERS, userId)
 }
 
+
+function _createData(length = 24) {
+    if (!localStorage.getItem(DB_USERS) || localStorage.getItem(DB_USERS).length === 0) {
+        let newUsers = []
+        for (var i = 0; i < length; i++) {
+            const user = {
+                _id: utilService.makeId(),
+                fullname: _getRandomAnimal(),
+                password: _getRandomAnimal(),
+                username: _getRandomAnimal(),
+                reviews: [],
+            }
+            newUsers.push(user)
+        }
+        localStorage.setItem(DB_USERS, JSON.stringify(newUsers))
+    }
+}
+
+function _getRandomAnimal() {
+    const animalNames = ["Lion", "Tiger", "Elephant", "Giraffe", "Zebra", "Kangaroo", "Panda", "Koala", "Penguin", "Dolphin", "Shark", "Eagle", "Wolf", "Bear"];
+    const randomIndex = Math.floor(Math.random() * animalNames.length)
+    return animalNames[randomIndex]
+}

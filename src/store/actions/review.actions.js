@@ -6,16 +6,19 @@ import { store } from "../store.js";
 export async function loadReviews(filterBy) {
     const reviews = await reviewService.query(filterBy)
     store.dispatch({ type: SET_REVIEWS, reviews })
+    return reviews
 }
 
-export async function removeToy(reviewId) {
-   await reviewService.reomve(toyId)
-    store.dispatch({ type: REMOVE_REVIEW, toyId: reviewId })
+export async function removeReview(reviewId) {
+    await reviewService.reomve(reviewId)
+    store.dispatch({ type: REMOVE_REVIEW, reviewId })
 }
 
-export async function saveToy(review) {
+export async function saveReview(review) {
     const type = review._id ? EDIT_REVIEW : ADD_REVIEW
-    await reviewService.save(toy)
-    store.dispatch({ type, toy: review })
+    const savedReview = await reviewService.save(review)
+    store.dispatch({ type, review })
+    return savedReview
 }
+
 
