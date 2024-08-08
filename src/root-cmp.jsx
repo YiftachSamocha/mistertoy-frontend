@@ -11,6 +11,7 @@ import { UserMsg } from "./cmps/UserMsg.jsx";
 import { DashBoard } from './pages/DashBoard.jsx';
 import { UserDetails } from "./pages/UserDetails.jsx";
 import { AdminDetails } from "./pages/AdminDetails.jsx";
+import { ReviewExplore } from "./pages/ReviewExplore.jsx";
 
 
 export function App() {
@@ -24,6 +25,7 @@ export function App() {
                             <Route element={<HomePage />} path="/" />
                             <Route element={<About />} path="/about" />
                             <Route element={<DashBoard />} path='/dashboard' />
+                            <Route element={<ReviewExplore/>} path="/review" />
                             <Route element={<ToyIndex />} path="/toy" />
                             <Route element={<ToyDetails />} path="/toy/:id" />
                             <Route element={<ToyEdit />} path="/toy/edit" />

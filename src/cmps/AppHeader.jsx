@@ -6,7 +6,13 @@ import { useEffect, useState } from "react";
 import { SideBar } from "./MaterialUi/SideBar.jsx";
 
 export function AppHeader() {
-    const nav = [{ txt: 'Home', url: '/' }, { txt: 'About', url: '/about' }, { txt: 'Toys', url: '/toy' }, { txt: 'Dahboard', url: '/dashboard' }]
+    const nav = [
+        { txt: 'Home', url: '/' },
+        { txt: 'About', url: '/about' },
+        { txt: 'Toys', url: '/toy' },
+        { txt: 'Dahboard', url: '/dashboard' },
+        { txt: 'Reviews', url: '/review' }
+    ]
     const breakpoint = 600
     const [isNarrow, setIsNarrow] = useState(window.innerWidth < breakpoint)
     const isAdminLogged = useSelector(state => state.authModule.isAdminLogged)
