@@ -27,9 +27,10 @@ export function AppHeader() {
         <header>
             <h1>Toys!</h1>
             {loggedInUser ? <section className="user-info">
-                <Link to={'/user/'+loggedInUser._id}>Hello {loggedInUser.fullname}</Link>
+                <Link to={'/user/' + loggedInUser._id}>Hello {loggedInUser.fullname}</Link>
                 {isAdminLogged && <p>(Admin)</p>}
                 <button onClick={() => logout()}>Log out</button>
+                {isAdminLogged && <Link to="/user/admin">Users</Link>}
             </section> : <LoginSignup />}
             {isNarrow ? <SideBar nav={nav} /> : <nav>
                 {nav.map(link => {

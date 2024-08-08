@@ -1,0 +1,58 @@
+.admin-details {
+    padding: 20px;
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .user-preview {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        >div {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(33.333% - 20px);
+            box-sizing: border-box;
+
+            h2 {
+                font-size: 1.5em;
+                margin-bottom: 10px;
+            }
+
+            h3 {
+                font-size: 1.2em;
+                color: #555;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 1em;
+                margin-bottom: 15px;
+                color: #777;
+            }
+
+            button {
+                background-color: #d9534f;
+                color: #fff;
+                padding: 8px 12px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1em;
+
+                i {
+                    margin-right: 5px;
+                }
+
+                &:hover {
+                    background-color: #c9302c;
+                }
+            }
+        }
+    }
+}

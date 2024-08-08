@@ -6,7 +6,7 @@ const DB_USERS = 'DB_USERS'
 _createData()
 
 
-async function query(filterBy = {}) {
+async function query() {
     let users = await storageService.query(DB_USERS)
     return users
 }

@@ -10,6 +10,7 @@ import { ToyEdit } from "./pages/ToyEdit.jsx";
 import { UserMsg } from "./cmps/UserMsg.jsx";
 import { DashBoard } from './pages/DashBoard.jsx';
 import { UserDetails } from "./pages/UserDetails.jsx";
+import { AdminDetails } from "./pages/AdminDetails.jsx";
 
 
 export function App() {
@@ -27,6 +28,7 @@ export function App() {
                             <Route element={<ToyDetails />} path="/toy/:id" />
                             <Route element={<ToyEdit />} path="/toy/edit" />
                             <Route element={<ToyEdit />} path="/toy/edit/:id" />
+                            <Route element={<AdminDetails/>} path="/user/admin" />
                             <Route element={<UserDetails/>} path="/user/:id"/>
                         </Routes>
                     </main>

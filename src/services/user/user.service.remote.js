@@ -5,8 +5,8 @@ export const userService = { query, getById, reomve, save}
 const BASE_URL = 'user/'
 
 
-function query(filterBy = {}) {
-    return httpService.get(BASE_URL, filterBy)
+function query() {
+    return httpService.get(BASE_URL)
 }
 
 async function getById(userId) {
