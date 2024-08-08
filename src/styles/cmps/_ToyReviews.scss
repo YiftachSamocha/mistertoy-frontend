@@ -1,0 +1,80 @@
+.toy-reviews {
+    margin-top: 10px;
+
+    h3 {
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 0.9em;
+        color: $clr-gray;
+    }
+
+    .toy-reviews-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1em;
+    }
+
+    .toy-review {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: #f9f9f9;
+
+        h3 {
+            font-size: 1em;
+            margin-bottom: 3px;
+        }
+
+        p {
+            margin-bottom: 3px;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: #d9534f;
+            cursor: pointer;
+            font-size: 1em;
+        }
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-size: 1em;
+    }
+
+    textarea {
+        width: 50%;
+        height: 80px;
+        padding: 8px;
+       
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 0.9em;
+        margin-inline: 1em
+    }
+
+    button {
+        @include btn(regular);
+    }
+
+    
+
+    .add-review-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 20px;
+        height: 20px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+}

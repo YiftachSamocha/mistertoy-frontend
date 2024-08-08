@@ -19,7 +19,7 @@ export function ToyDetails() {
     if (!toy || Object.keys(toy).length === 0) return <div className="no-toy">Loading...</div>
 
     return <section className="toy-details" >
-        <section style={{ backgroundColor: toy.color }}>
+        <section style={{ backgroundColor: toy.color }} className="main-content">
             <div className="nav-toy-details">
                 <Link to={'/toy/' + toy.prevToyId}><button><i className="fa-solid fa-arrow-left"></i></button></Link>
                 <Link to={'/toy/' + toy.nextToyId}><button><i className="fa-solid fa-arrow-right"></i></button></Link>
@@ -32,11 +32,12 @@ export function ToyDetails() {
             })}
             <p>{toy.inStock ? 'In stock!' : 'Not in stock...'}</p>
             <img src={toy.img} alt="" />
-
-            <button onClick={() => setIsMsgsOpen(prev => !prev)}>Messages</button>
+            <div className="open-buttons">
+                <button onClick={() => setIsMsgsOpen(prev => !prev)}>Messages</button>
+                <button onClick={() => setIsReviewsOpen(prev => !prev)}>Reviews</button>
+            </div>
             {isMsgsOpen && <ToyMsgs toy={toy} setToy={setToy} />}
-            <button onClick={() => setIsReviewsOpen(prev => !prev)}>Reviews</button>
-            {isReviewsOpen && <ToyReviews toy={toy} /> }
+            {isReviewsOpen && <ToyReviews toy={toy} />}
 
         </section>
         <div className="back-btn"><Link to={'/toy'}><button>Back to page</button></Link></div>

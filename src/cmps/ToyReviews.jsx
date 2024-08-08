@@ -67,10 +67,10 @@ export function ToyReviews({ toy }) {
     
     if (!currUser) return <div>Log in to add a review!</div>
 
-    return <section className="reviews">
+    return <section className="toy-reviews">
         <h3>Reviews:</h3>
         {reviews.length === 0 && <p>No reviews... Add one!</p>}
-        <div>
+        <div className="toy-reviews-content">
             {reviews.map(review => {
                 return <div className="toy-review" key={review._id}>
                     <h3>{review.byUser.fullname}</h3>
@@ -80,7 +80,7 @@ export function ToyReviews({ toy }) {
             })}
         </div>
         <label htmlFor="revies">Add Review</label>
-        {isTextboxOpen ? <section>
+        {isTextboxOpen ? <section >
             <textarea name="reviews" id="reviews" onChange={handleChange} value={txtReview}></textarea>
             <button onClick={addReview}>Submit</button>
         </section> : <button onClick={() => setIsTextboxOpen(prev => !prev)} className="add-review-btn">+</button>}

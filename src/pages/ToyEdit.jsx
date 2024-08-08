@@ -79,7 +79,7 @@ export function ToyEdit() {
                 <label htmlFor="img">
                     Image
                     <img src={toyToSave.img} alt="" />
-                    <input type="file" hidden name="img" id="img" onChange={handleChange} />
+                    <input type="file" accept="image/*" hidden name="img" id="img" onChange={handleChange} />
                 </label>
 
             </div>
