@@ -26,7 +26,6 @@ export function userReducer(state = initialState, action = {}) {
             const editedUsers = state.users.map(user => user._id === action.user._id ? action.user : user)
             return { ...state, users: editedUsers }
 
-
         default:
             return state
     }

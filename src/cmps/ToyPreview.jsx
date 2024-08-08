@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export function ToyPreview({ toy, onRemoveToy }) {
-    const isAdminLogged = useSelector(state => state.userModule.isAdminLogged)
+    const isAdminLogged = useSelector(state => state.authModule.isAdminLogged)
 
     return <div className="toy" style={{ backgroundColor: toy.color }}>
         <h3 className={toy.inStock ? 'in-stock' : ''}>{toy.name}</h3>

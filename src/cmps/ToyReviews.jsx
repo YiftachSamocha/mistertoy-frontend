@@ -9,7 +9,7 @@ import { saveUser } from "../store/actions/user.actions.js"
 export function ToyReviews({ toy, setToy }) {
     const [isTextboxOpen, setIsTextboxOpen] = useState(false)
     const [txtReview, setTxtReview] = useState('')
-    const isAdminLogged = useSelector(state => state.userModule.isAdminLogged)
+    const isAdminLogged = useSelector(state => state.authModule.isAdminLogged)
     function handleChange({ target }) {
         const { value } = target
         setTxtReview(value)

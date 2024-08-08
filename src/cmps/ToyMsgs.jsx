@@ -8,7 +8,7 @@ import { utilService } from "../services/util.service.js"
 export function ToyMsgs({ toy, setToy }) {
     const [isTextboxOpen, setIsTextboxOpen] = useState(false)
     const [txtMsg, setTxtMsg] = useState('')
-    const isAdminLogged = useSelector(state => state.userModule.isAdminLogged)
+    const isAdminLogged = useSelector(state => state.authModule.isAdminLogged)
     function handleChange({ target }) {
         const { value } = target
         setTxtMsg(value)

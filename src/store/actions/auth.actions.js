@@ -1,9 +1,10 @@
+import { authService } from "../../services/auth/index.js";
 import { SET_USER } from "../reducers/auth.reducer.js";
 import { store } from "../store.js";
 
 export async function signup(user) {
     try {
-        const loggedInUser = await userService.signup(user)
+        const loggedInUser = await authService.signup(user)
         store.dispatch({ type: SET_USER, loggedInUser, isAdminLogged: false })
     }
     catch (err) {
@@ -14,7 +15,7 @@ export async function signup(user) {
 
 export async function login(user) {
     try {
-        const loggedInUser = await userService.login(user)
+        const loggedInUser = await authService.login(user)
         const isAdminLogged = loggedInUser.isAdmin
         store.dispatch({ type: SET_USER, loggedInUser, isAdminLogged })
     }
@@ -26,7 +27,7 @@ export async function login(user) {
 
 export async function logout() {
     try {
-        await userService.logout()
+        await authService.logout()
         store.dispatch({ type: SET_USER, loggedInUser: null, isAdminLogged: false })
     }
     catch (err) {
