@@ -17,7 +17,7 @@ export async function removeReview(reviewId) {
 export async function saveReview(review) {
     const type = review._id ? EDIT_REVIEW : ADD_REVIEW
     const savedReview = await reviewService.save(review)
-    store.dispatch({ type, review })
+    store.dispatch({ type, review: savedReview })
     return savedReview
 }
 

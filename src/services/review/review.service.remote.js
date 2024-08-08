@@ -15,8 +15,8 @@ async function getById(reviewId) {
     return await httpService.get(BASE_URL + reviewId)
 }
 
-function reomve(reviewId) {
-    return httpService.delete(BASE_URL + reviewId)
+async function reomve(reviewId) {
+    return await httpService.delete(BASE_URL + reviewId)
 }
 
 function save(review) {

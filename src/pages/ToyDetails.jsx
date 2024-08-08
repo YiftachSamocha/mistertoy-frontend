@@ -36,7 +36,7 @@ export function ToyDetails() {
             <button onClick={() => setIsMsgsOpen(prev => !prev)}>Messages</button>
             {isMsgsOpen && <ToyMsgs toy={toy} setToy={setToy} />}
             <button onClick={() => setIsReviewsOpen(prev => !prev)}>Reviews</button>
-            {isReviewsOpen && <ToyReviews toy={toy} setToy={setToy} /> }
+            {isReviewsOpen && <ToyReviews toy={toy} /> }
 
         </section>
         <div className="back-btn"><Link to={'/toy'}><button>Back to page</button></Link></div>

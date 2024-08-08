@@ -20,6 +20,7 @@ export function ReviewExplore() {
         const { value, name } = target
         setFilterBy({ ...filterBy, [name]: value })
     }
+    
     function isDeleteable(review) {
         if(!currUser) return false
         if (currUser.isAdmin) return true
@@ -29,10 +30,7 @@ export function ReviewExplore() {
 
     async function onRemoveReview(reviewId) {
         //Remove from review
-        await removeReview(reviewId)
-
-        
-        
+        await removeReview(reviewId)  
     }
 
     return <section className="reviews-explore">

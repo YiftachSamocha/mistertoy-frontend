@@ -36,3 +36,13 @@ export async function logout() {
     }
 }
 
+export function setLoggedInUser(user){
+    try {
+        store.dispatch({ type: SET_USER, loggedInUser: user, isAdminLogged: user.isAdmin })
+    }
+    catch (err) {
+        console.log('Cannot set logged in user', err)
+        throw err
+    }
+}
+
