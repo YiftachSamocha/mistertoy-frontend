@@ -22,7 +22,7 @@ async function logout() {
 }
 
 function _setLoggedInUser(user) {
-    const userToSave = { fullname: user.fullname, _id: user._id, isAdmin: user.isAdmin, reviews: user.reviews }
+    const userToSave = { fullname: user.fullname, _id: user._id, isAdmin: user.isAdmin, reviews: user.reviews || [] }
     sessionStorage.setItem(DB_CURR_USER, JSON.stringify(userToSave))
     return userToSave
 }

@@ -31,6 +31,7 @@ export function ToyDetails() {
                 return <div className="label" key={utilService.makeId()}>{label}</div>
             })}
             <p>{toy.inStock ? 'In stock!' : 'Not in stock...'}</p>
+            <img src={toy.img} alt="" />
 
             <button onClick={() => setIsMsgsOpen(prev => !prev)}>Messages</button>
             {isMsgsOpen && <ToyMsgs toy={toy} setToy={setToy} />}

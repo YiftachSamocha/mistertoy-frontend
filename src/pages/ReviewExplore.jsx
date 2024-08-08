@@ -7,7 +7,8 @@ export function ReviewExplore(){
     useEffect(()=>{
         reviewService.query(filterBy)
         .then(foundReviews=> setReviews(foundReviews))
-    },[filterBy])
+    },[])
+    console.log(reviews)
 
     return <section className="reviews-explore">
         <h1>Reviews</h1>

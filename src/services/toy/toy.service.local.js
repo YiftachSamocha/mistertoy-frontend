@@ -80,6 +80,7 @@ function _createData(length = 24) {
                 createdAt: new Date(),
                 inStock: _getRandomItem('inStock'),
                 color: _getRandomItem('color'),
+                img: '',
                 msgs: [],
                 reviews: [],
             }

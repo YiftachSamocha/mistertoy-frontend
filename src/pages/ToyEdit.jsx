@@ -4,6 +4,7 @@ import { toyService } from "../services/toy/index.js"
 import { useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { FormControl, Input, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material"
+import { uploadService } from "../services/upload.service.js"
 
 
 
@@ -31,10 +32,15 @@ export function ToyEdit() {
         }
     }, [id])
 
-    function handleChange({ target }) {
+    async function handleChange(ev) {
+        const { target } = ev
         let { name, value, checked, componentName } = target
         if (name === 'inStock') value = checked
         if (componentName) name = componentName
+        if (name = 'img') {
+            const toyImg = await uploadService.uploadImg(ev)
+            value = toyImg.secure_url
+        }
         setToyToSave({ ...toyToSave, [name]: value })
     }
 
@@ -68,6 +74,14 @@ export function ToyEdit() {
                 <label htmlFor="inStock">{toyToSave.inStock ? 'In Stock!' : 'Not in Stock'}</label>
                 <input type="checkbox" name="inStock" id="inStock"
                     checked={toyToSave.inStock} onChange={handleChange} />
+            </div>
+            <div>
+                <label htmlFor="img">
+                    Image
+                    <img src={toyToSave.img} alt="" />
+                    <input type="file" hidden name="img" id="img" onChange={handleChange} />
+                </label>
+
             </div>
         </div>
 

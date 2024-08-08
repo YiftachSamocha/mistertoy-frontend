@@ -5,6 +5,7 @@ import { store } from "../store.js";
 export async function loadUsers(filterBy) {
     const users = await userService.query(filterBy)
     store.dispatch({ type: SET_USERS, users })
+    return users
 }
 
 export async function removeUser(userId) {
@@ -14,8 +15,8 @@ export async function removeUser(userId) {
 
 export async function saveUser(user) {
     const type = user._id ? EDIT_USER : ADD_USER
-    await userService.save(user)
     store.dispatch({ type, user })
+    return await userService.save(user)
 }
 
 

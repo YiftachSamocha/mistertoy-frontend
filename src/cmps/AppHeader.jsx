@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { logout } from "../store/actions/auth.actions.js";
 import { useEffect, useState } from "react";
 import { SideBar } from "./MaterialUi/SideBar.jsx";
+import { utilService } from "../services/util.service.js";
 
 export function AppHeader() {
     const nav = [
@@ -40,7 +41,7 @@ export function AppHeader() {
             </section> : <LoginSignup />}
             {isNarrow ? <SideBar nav={nav} /> : <nav>
                 {nav.map(link => {
-                    return <NavLink to={link.url}>{link.txt}</NavLink>
+                    return <NavLink to={link.url} key={utilService.makeId()}>{link.txt}</NavLink>
                 })}
             </nav>}
 

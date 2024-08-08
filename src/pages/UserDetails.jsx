@@ -25,7 +25,7 @@ export function UserDetails() {
     // }
     if (!user) return <div>Log in to watch your reviews!</div>
     return <section className="user-details">
-        <h1>{user.fullname}</h1>
+        <h1>{user.fullname}: Reviews</h1>
         <div>
             {reviews.map(review => {
                 return <div key={review._id} className="user-review">
