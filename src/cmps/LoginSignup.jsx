@@ -56,12 +56,12 @@ export function LoginSignup() {
             .min(2, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Required'),
-    });
+    })
 
     function CustomInput(props) {
         return (
             <TextField {...props} id="outlined-basic" variant="outlined" />
-        );
+        )
     }
 
     return (

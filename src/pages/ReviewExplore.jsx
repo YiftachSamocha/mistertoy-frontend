@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { loadReviews, removeReview } from "../store/actions/review.actions.js";
 import { loadToys, saveToy } from "../store/actions/toy.actions";
-import { loadUsers } from "../store/actions/user.actions";
+import { loadUsers, saveUser } from "../store/actions/user.actions";
+import { setLoggedInUser } from "../store/actions/auth.actions.js";
 
 export function ReviewExplore() {
     const reviews = useSelector(state => state.reviewModule.reviews)
@@ -20,17 +21,31 @@ export function ReviewExplore() {
         const { value, name } = target
         setFilterBy({ ...filterBy, [name]: value })
     }
-    
+
     function isDeleteable(review) {
-        if(!currUser) return false
+        if (!currUser) return false
         if (currUser.isAdmin) return true
         if (currUser._id === review.byUser._id) return true
         return false
     }
 
-    async function onRemoveReview(reviewId) {
+    async function onRemoveReview(reviewToRemove) {
+        const reviewId = reviewToRemove._id
         //Remove from review
-        await removeReview(reviewId)  
+        await removeReview(reviewId)
+
+        //Remove from toy
+        const toyToRemoveFrom = toys.find(toy => toy._id === reviewToRemove.aboutToy._id)
+        const updatedToyReviews = reviews.filter(review => review._id !== reviewId)
+        const updatedToy = { ...toyToRemoveFrom, reviews: updatedToyReviews }
+        await saveToy(updatedToy)
+
+        //Remove from user
+        const updatedUserReviews = currUser.reviews.filter(review => review._id !== reviewId)
+        const updatedUser = { ...currUser, reviews: updatedUserReviews }
+        setLoggedInUser(updatedUser)
+        await saveUser(updatedUser)
+
     }
 
     return <section className="reviews-explore">
@@ -66,7 +81,7 @@ export function ReviewExplore() {
                     <h2>By User: {review.byUser.fullname}</h2>
                     <h2>About Toy: {review.aboutToy.name}</h2>
                     <p>{review.txt}</p>
-                    {isDeleteable(review) && <button onClick={() => onRemoveReview(review._id)}><i className="fa-solid fa-trash"></i></button>}
+                    {isDeleteable(review) && <button onClick={() => onRemoveReview(review)}><i className="fa-solid fa-trash"></i></button>}
                 </div>
             })}
         </div>

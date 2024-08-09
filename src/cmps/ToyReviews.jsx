@@ -15,7 +15,7 @@ export function ToyReviews({ toy }) {
 
     useEffect(() => {
         loadReviews({ toy: toy._id })
-    }, [])
+    }, [toy])
 
     function handleChange({ target }) {
         const { value } = target
