@@ -1,0 +1,81 @@
+.chatroom {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 25em;
+    margin: 1em auto;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 8px $clr-black;
+}
+
+.typing {
+    font-style: italic;
+    color: $clr-gray;
+    height: 1.3em;
+    margin-bottom: 0.5em;
+}
+
+.chat {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+
+    .message {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0.3em 0.5em;
+        border-radius: 15px;
+        max-width: 75%;
+        word-wrap: break-word;
+
+        b {
+            font-weight: bold;
+            color: #333;
+        }
+
+        span {
+            color: #555;
+        }
+    }
+
+    .me {
+        background-color: #d1e7dd;
+        align-self: flex-end;
+    }
+
+    .other {
+        background-color: #f8d7da;
+        align-self: flex-start;
+    }
+
+
+}
+
+.new-msg {
+    display: flex;
+    gap: 0.5em;
+
+    input {
+        flex-grow: 1;
+        padding: 0.5em;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    button {
+        @include btn(regular)
+    }
+}

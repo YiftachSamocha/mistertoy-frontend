@@ -73,22 +73,27 @@ export function ChatRoom({ toy }) {
         return msgs.filter(msg => msg.toyId === toy._id)
     }
 
+    function renderTypers() {
+        if (typingUsers.length === 0) return ''
+        if (typingUsers.length === 1) return <div>{typingUsers[0].fullname + ' is typing...'}</div>
+        return <div>{typingUsers.map(user => <span>{user.fullname}, </span>)} are typing...</div>
+    }
+
     if (!currUser) return <div>Log in to enter the chat!</div>
-    return <section>
-        <div>
-            {typingUsers.map(user => <span>{user.fullname} </span>)}
-            {typingUsers.length === 0 ? '' : ' is typing...'}
+    return <section className="chatroom">
+        <div className="typing">
+            {renderTypers()}
         </div>
-        <div>
+        <div className="chat" >
             {filterMsgs().map(msg => {
-                return <div key={utilService.makeId()}>
-                    <b>{msg.by.fullname === currUser.fullname ? 'Me' : msg.by.fullname}</b>
-                    {msg.txt}
+                return <div className={`message ${msg.by.fullname === currUser.fullname ? 'me' : 'other'}`}>
+                    <b>{msg.by.fullname === currUser.fullname ? 'Me' : msg.by.fullname}:</b>
+                    <span>{msg.txt}</span>
                 </div>
+
             })}
         </div>
-
-        <div>
+        <div className="new-msg">
             <input type="text" placeholder="Type here..." value={currTxt} onChange={handleChange} />
             <button onClick={sendMsg}>Send</button>
         </div>
