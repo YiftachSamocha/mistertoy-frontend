@@ -4,9 +4,12 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { TextField } from '@mui/material';
+import { socketService } from "../services/socket.service.js";
+import { useSelector } from "react-redux";
 
 export function LoginSignup() {
-    const [isSignup, setIsSignup] = useState(false);
+    const [isSignup, setIsSignup] = useState(false)
+    const currUser = useSelector(state => state.authModule.loggedInUser)
 
     async function onSubmit(values, { setSubmitting }) {
         if (isSignup) {
@@ -14,16 +17,19 @@ export function LoginSignup() {
                 await signup(values)
                 showSuccessMsg('Signed up successfully')
                 setSubmitting(false)
+                //socketService.login(currUser._id)
             }
             catch {
                 showErrorMsg('Cannot sign up')
                 setSubmitting(false)
+
             }
         } else {
             try {
                 await login(values)
                 showSuccessMsg('Logged in successfully')
                 setSubmitting(false)
+                //socketService.login(currUser._id)
             }
             catch {
                 showErrorMsg('Cannot log in')

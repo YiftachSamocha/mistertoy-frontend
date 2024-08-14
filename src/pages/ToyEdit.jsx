@@ -5,6 +5,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { FormControl, Input, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material"
 import { uploadService } from "../services/upload.service.js"
+import { SOCKET_EVENT_ADMIN_MSGS, socketService } from "../services/socket.service.js"
+import { useSelector } from "react-redux"
 
 
 
@@ -12,7 +14,10 @@ import { uploadService } from "../services/upload.service.js"
 export function ToyEdit() {
     const [toyToSave, setToyToSave] = useState(toyService.getEmptyToy())
     const { id } = useParams()
+    const currUser = useSelector(state => state.authModule.loggedInUser)
+
     const navigate = useNavigate()
+
     const labels = toyService.getLabels()
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -32,12 +37,18 @@ export function ToyEdit() {
         }
     }, [id])
 
+    useEffect(() => {
+        socketService.on(SOCKET_EVENT_ADMIN_MSGS, msg => {
+            showSuccessMsg(msg)
+        })
+    }, [])
+
     async function handleChange(ev) {
         const { target } = ev
         let { name, value, checked, componentName } = target
         if (name === 'inStock') value = checked
         if (componentName) name = componentName
-        if (name = 'img') {
+        if (name === 'img') {
             const toyImg = await uploadService.uploadImg(ev)
             value = toyImg.secure_url
         }
@@ -48,6 +59,7 @@ export function ToyEdit() {
         try {
             await saveToy(toyToSave)
             navigate('/toy')
+            socketService.emit(SOCKET_EVENT_ADMIN_MSGS, { msg: `Admin ${id ? 'edited' : 'added'} toy`, admin: currUser })
             showSuccessMsg(`Toy ${id ? 'Edited' : 'Added'} successfully`)
         }
         catch { showErrorMsg(`Cannot ${id ? 'edit' : 'add'} toy...`) }

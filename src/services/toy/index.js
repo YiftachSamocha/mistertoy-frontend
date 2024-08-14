@@ -14,7 +14,9 @@ function getEmptyToy() {
         createdAt: new Date(),
         inStock: false,
         color: '#ffffff',
+        img: '',
         msgs: [],
+        reviews: [],
 
     }
 }
