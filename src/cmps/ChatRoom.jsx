@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { SOCKET_EMIT_SEND_MSG, SOCKET_EMIT_SET_TOPIC, SOCKET_EVENT_ADD_MSG, SOCKET_EVENT_USET_TYPING, socketService } from "../services/socket.service"
 import { useSelector } from "react-redux"
-import { utilService } from "../services/util.service.js"
+import { addToyMsg } from "../store/actions/toy.actions.js"
 
 export function ChatRoom({ toy }) {
     const [currTxt, setCurrTxt] = useState('')
     const currUser = useSelector(state => state.authModule.loggedInUser)
-    const [msgs, setMsgs] = useState([])
+    const [msgs, setMsgs] = useState(toy.msgs)
     const [typingUsers, setTypingUsers] = useState([])
 
     useEffect(() => {
@@ -57,7 +57,9 @@ export function ChatRoom({ toy }) {
         }, 2000)
     }
     function sendMsg() {
-        socketService.emit(SOCKET_EMIT_SEND_MSG, createMsg())
+        const msgToSend= createMsg()
+        addToyMsg(msgToSend)
+        socketService.emit(SOCKET_EMIT_SEND_MSG, msgToSend)
         setCurrTxt('')
     }
 
@@ -76,7 +78,7 @@ export function ChatRoom({ toy }) {
     function renderTypers() {
         if (typingUsers.length === 0) return ''
         if (typingUsers.length === 1) return <div>{typingUsers[0].fullname + ' is typing...'}</div>
-        return <div>{typingUsers.map(user => <span>{user.fullname}, </span>)} are typing...</div>
+        return <div>{typingUsers.map(user => <span key={user._id}>{user.fullname}, </span>)} are typing...</div>
     }
 
     if (!currUser) return <div>Log in to enter the chat!</div>

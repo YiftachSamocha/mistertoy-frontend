@@ -2,7 +2,7 @@ import { store } from "../../store/store.js"
 import { httpService } from "../http.service.js"
 
 
-export const toyService = { query, getById, reomve, save}
+export const toyService = { query, getById, reomve, save, addMsg }
 
 const BASE_URL = 'toy/'
 
@@ -29,6 +29,10 @@ function save(toy) {
     else {
         return httpService.post(BASE_URL, toy)
     }
+}
+
+function addMsg(msg) {
+    return httpService.post(BASE_URL + 'msg', msg)
 }
 
 async function _setNextPrevToyId(toy) {
