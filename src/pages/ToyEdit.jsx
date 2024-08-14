@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { FormControl, Input, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material"
 import { uploadService } from "../services/upload.service.js"
-import { SOCKET_EVENT_ADMIN_MSGS, socketService } from "../services/socket.service.js"
+import { SOCKET_EVENT_ADMIN_MSGS, SOCKET_EVENT_TOY_SAVED, socketService } from "../services/socket.service.js"
 import { useSelector } from "react-redux"
 
 
@@ -60,6 +60,7 @@ export function ToyEdit() {
             await saveToy(toyToSave)
             navigate('/toy')
             socketService.emit(SOCKET_EVENT_ADMIN_MSGS, { msg: `Admin ${id ? 'edited' : 'added'} toy`, admin: currUser })
+            socketService.emit(SOCKET_EVENT_TOY_SAVED, `Toy has been ${id ? 'edited' : 'added'}`)
             showSuccessMsg(`Toy ${id ? 'Edited' : 'Added'} successfully`)
         }
         catch { showErrorMsg(`Cannot ${id ? 'edit' : 'add'} toy...`) }

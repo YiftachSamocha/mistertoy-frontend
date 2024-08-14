@@ -7,6 +7,8 @@ export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
 export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
 export const SOCKET_EVENT_USET_TYPING = 'user-typing'
 export const SOCKET_EVENT_ADMIN_MSGS = 'admin-msgs'
+export const SOCKET_EVENT_TOY_REMOVED = 'remove-toy'
+export const SOCKET_EVENT_TOY_SAVED = 'save-toy'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'

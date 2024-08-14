@@ -17,6 +17,7 @@ export function ChatRoom({ toy }) {
     }, [])
     useEffect(() => {
         socketService.emit(SOCKET_EMIT_SET_TOPIC, toy._id)
+        setMsgs(toy.msgs)
     }, [toy])
 
     useEffect(() => {
@@ -56,8 +57,9 @@ export function ChatRoom({ toy }) {
             socketService.emit(SOCKET_EVENT_USET_TYPING, { ...currUser, stopped: true })
         }, 2000)
     }
-    function sendMsg() {
-        const msgToSend= createMsg()
+    function sendMsg(ev) {
+        ev.preventDefault()
+        const msgToSend = createMsg()
         addToyMsg(msgToSend)
         socketService.emit(SOCKET_EMIT_SEND_MSG, msgToSend)
         setCurrTxt('')
@@ -95,9 +97,9 @@ export function ChatRoom({ toy }) {
 
             })}
         </div>
-        <div className="new-msg">
+        <form className="new-msg">
             <input type="text" placeholder="Type here..." value={currTxt} onChange={handleChange} />
             <button onClick={sendMsg}>Send</button>
-        </div>
+        </form>
     </section>
 }
