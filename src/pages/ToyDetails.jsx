@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { toyService } from "../services/toy/index.js"
 import { ToyMsgs } from "../cmps/ToyMsgs.jsx"
 import { ToyReviews } from "../cmps/ToyReviews.jsx"
+import { ChatRoom } from "../cmps/ChatRoom.jsx"
 
 export function ToyDetails() {
     const [toy, setToy] = useState({})
@@ -36,8 +37,9 @@ export function ToyDetails() {
                 <button onClick={() => setIsMsgsOpen(prev => !prev)}>Messages</button>
                 <button onClick={() => setIsReviewsOpen(prev => !prev)}>Reviews</button>
             </div>
-            {isMsgsOpen && <ToyMsgs toy={toy} setToy={setToy} />}
+            {isMsgsOpen && <ChatRoom toy={toy} />}
             {isReviewsOpen && <ToyReviews toy={toy} />}
+            {/* <ToyMsgs toy={toy} setToy={setToy} /> */}
 
         </section>
         <div className="back-btn"><Link to={'/toy'}><button>Back to page</button></Link></div>
